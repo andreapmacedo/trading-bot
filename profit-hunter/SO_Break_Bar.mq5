@@ -28,8 +28,8 @@ int SO_Break_Bar(int callFrom)
     TopChange = 0;
     BottomChange = 0;
     
-    Level_Buy = PriceInfo[1].high;
-    Level_Sell = PriceInfo[1].low;
+    CurrentLevelBuy = PriceInfo[1].high;
+    CurrentLevelSell = PriceInfo[1].low;
 
     TopChange +=  EN_Distance_Long;
     BottomChange += EN_Distance_Short;
@@ -43,8 +43,8 @@ int SO_Break_Bar(int callFrom)
     // determinar o volume
     // determinar a execução da ordem
 
-    Level_Sell -=  BottomChange;
-    Level_Buy += TopChange;
+    CurrentLevelSell -=  BottomChange;
+    CurrentLevelBuy += TopChange;
 
     
 
@@ -94,8 +94,8 @@ int SO_Break_Bar(int callFrom)
     // pode ser utilizado tb o valor médio como ref.
 
 
-    // Level_Sell +=  TopChange;
-    // Level_Buy -= BottomChange;
+    // CurrentLevelSell +=  TopChange;
+    // CurrentLevelBuy -= BottomChange;
 
     if(SELECTED_EN_MODE == 1)
     {

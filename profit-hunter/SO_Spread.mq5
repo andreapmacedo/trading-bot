@@ -26,7 +26,8 @@ bool BUY_TREND_OK = true;
 bool SELL_TREND_OK = true;
 
 bool TREND_MODE = false;
-void SoResetVars(){
+
+void SoSpreadResetVars(){
   min_add_buy_modify = 0;
   min_add_sell_modify = 0;
   min_reduce_buy_modify = 0;
@@ -44,8 +45,8 @@ void SoResetVars(){
   SellVolChange = 0;
 
 
-  Level_Sell = SERVER_SYMBOL_ASK + SELECTED_EN_DISTANCE_SHORT;
-  Level_Buy = SERVER_SYMBOL_BID - SELECTED_EN_DISTANCE_LONG;
+  CurrentLevelSell = SERVER_SYMBOL_ASK + SELECTED_EN_DISTANCE_SHORT;
+  CurrentLevelBuy = SERVER_SYMBOL_BID - SELECTED_EN_DISTANCE_LONG;
   currentBuyVolume  = SELECTED_VOLUME_LONG;
   currentSellVolume  = SELECTED_VOLUME_SHORT ;
 
@@ -66,7 +67,7 @@ int Sys_Spread_v1(int callFrom){
   GetCurrentPositionVolume(currentPositionVolume);
   
   //-- Reseta os parâmetros da estratégia.  
-  SoResetVars();
+  SoSpreadResetVars();
 
   //-- Atualiza a contagem de ordens do par negociado.
   CountAllOrdersForPairType();
@@ -149,11 +150,6 @@ int SysSpreadBuild(int callFrom){
   
   //-- Caso o modelo escolhido pelo usuário seja o de acompanhamento de máximas/mínimas ou caso o volume da posição tenha
   // alcançado o limite estabelecido pelo usuário, as ordens precisam ser atualizadas
-  
-  Print("currentPositionVolume: " + currentPositionVolume);
-  Print("SELECTED_LIMIT_POSITION_VOLUME: " + SELECTED_LIMIT_POSITION_VOLUME);
-
-
   if(
     FOLLOW_MODE
     || FOLLOW_ME_BY_T1
@@ -161,21 +157,18 @@ int SysSpreadBuild(int callFrom){
     || currentPositionVolume == 0
     // || callFrom == 5
     ) {
-    Print("Estamos dentro!!!");
+    // Print("Estamos dentro!!!");
     SetAllFlows(); 
-    Level_Sell = Lowest_Top;
-    Level_Buy = Highest_Bottom;
+    CurrentLevelSell = Lowest_Top;
+    CurrentLevelBuy = Highest_Bottom;
   } else {
-    Print("Estamos fora!!!");
-    Level_Sell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;
-    Level_Buy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;            
+    // Print("Estamos fora!!!");
+    CurrentLevelSell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;
+    CurrentLevelBuy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;            
   }
-
-
-
   /*
-  Level_Sell = Lowest_Top;
-  Level_Buy = Highest_Bottom;
+  CurrentLevelSell = Lowest_Top;
+  CurrentLevelBuy = Highest_Bottom;
   */
 
 
@@ -183,12 +176,12 @@ int SysSpreadBuild(int callFrom){
   if(currentPositionVolume >= SELECTED_LIMIT_POSITION_VOLUME)
   {
     if(pos_status == 0) { // (0) Comprado
-      Level_Buy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;      
+      CurrentLevelBuy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;      
       if(TotalSymbolOrderBuy == 0) {// só chama o spd se não tiver mais ordem a ser exec. do lado que vai sofrer o stop
         SetSpdReverse3();
       }
     } else { // Vendido
-      Level_Sell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;       
+      CurrentLevelSell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;       
       if(TotalSymbolOrderSell == 0) {
         SetSpdReverse3();
       }
@@ -222,8 +215,8 @@ int SysSpreadBuild(int callFrom){
     SellVolChange = SELECTED_TOTAL_VOL_VALUE_LIMIT_CHANGE;
   
   
-  Level_Sell += TopChange;
-  Level_Buy -= BottomChange;
+  CurrentLevelSell += TopChange;
+  CurrentLevelBuy -= BottomChange;
 
   currentBuyVolume += BuyVolChange;
   currentSellVolume += SellVolChange;
@@ -241,18 +234,18 @@ int SysSpreadBuild(int callFrom){
 
   if(currentPositionVolume < SELECTED_LIMIT_POSITION_VOLUME)
   {
-    if(SERVER_SYMBOL_BID > Level_Sell) {
+    if(SERVER_SYMBOL_BID > CurrentLevelSell) {
       Print("call from 100 ENFORCE"); // chamada aqui
       ResetAxlesLevels();
       CountFreezeCentralLevel == 0;
-      Print("Enforce Reset Level_Sell: ", Level_Sell);                
+      Print("Enforce Reset CurrentLevelSell: ", CurrentLevelSell);                
       return -1;
     }
-    if(SERVER_SYMBOL_ASK < Level_Buy) {
+    if(SERVER_SYMBOL_ASK < CurrentLevelBuy) {
       Print("call from 100 ENFORCE");
       ResetAxlesLevels();
       CountFreezeCentralLevel == 0;
-      Print("Enforce Reset Level_Buy: ", Level_Buy);       
+      Print("Enforce Reset CurrentLevelBuy: ", CurrentLevelBuy);       
       return -1;
     }
   }

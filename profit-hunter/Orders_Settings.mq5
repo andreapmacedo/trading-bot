@@ -245,8 +245,8 @@ double EN_BUY_MARKET_LEVEL;
 double EN_SELL_MARKET_LEVEL;
 
 
-double Setted_Last_Level_Buy;
-double Setted_Last_Level_Sell;
+double Setted_Last_CurrentLevelBuy;
+double Setted_Last_CurrentLevelSell;
 double Deal_Current_Level;
 double Deal_Last_Level;
 
@@ -260,13 +260,13 @@ void SetSpdReverse()
         {
             if(pos_status == 0)
             {
-                int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, Level_Sell, NULL , NULL,  currentSellVolume);
+                int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, CurrentLevelSell, NULL , NULL,  currentSellVolume);
                 Print("SPD_REVERSE");
                 //return (-3);
             }
             if(pos_status == 1)
             {
-                int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, Level_Buy, NULL , NULL,  currentBuyVolume);
+                int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
                 Print("SPD_REVERSE");
                // return (-3);
             }
@@ -282,15 +282,15 @@ void SetSpdReverse2()
         {
             if(pos_status == 0)
             {
-                //int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, Level_Sell, NULL , NULL,  currentSellVolume);
-                Level_Sell = SERVER_SYMBOL_BID;
+                //int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, CurrentLevelSell, NULL , NULL,  currentSellVolume);
+                CurrentLevelSell = SERVER_SYMBOL_BID;
                 Print("SPD_REVERSE");
                 //return (-3);
             }
             if(pos_status == 1)
             {
-                //int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, Level_Buy, NULL , NULL,  currentBuyVolume);
-                Level_Buy = SERVER_SYMBOL_ASK;
+                //int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
+                CurrentLevelBuy = SERVER_SYMBOL_ASK;
                 Print("SPD_REVERSE");
                // return (-3);
             }
@@ -313,15 +313,15 @@ void Set_Trigger_SPD_001()
 {
     if(pos_status == 0)
     {
-        //int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, Level_Sell, NULL , NULL,  currentSellVolume);
-        Level_Sell = SERVER_SYMBOL_BID;
+        //int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, CurrentLevelSell, NULL , NULL,  currentSellVolume);
+        CurrentLevelSell = SERVER_SYMBOL_BID;
         Print("SPD_REVERSE");
         
     }
     if(pos_status == 1)
     {
-        //int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, Level_Buy, NULL , NULL,  currentBuyVolume);
-        Level_Buy = SERVER_SYMBOL_ASK;
+        //int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
+        CurrentLevelBuy = SERVER_SYMBOL_ASK;
         Print("SPD_REVERSE");
         
     }
@@ -332,26 +332,26 @@ void Set_Trigger_Order_Dev()
 {
     if(CheckSellManagemente_Evo())
     {
-        if(Central_Bottom > Level_Sell )
+        if(Central_Bottom > CurrentLevelSell )
         {
-            //int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, Level_Buy, NULL , NULL,  currentBuyVolume);
-            int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, Level_Sell, NULL , NULL,  currentSellVolume);
+            //int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
+            int r = Place_Market_Order_Dev(ORDER_TYPE_SELL, CurrentLevelSell, NULL , NULL,  currentSellVolume);
         }
     }
     if(CheckBuyManagemente_Evo())
     {
         
-        if(Central_Top < Level_Buy)
+        if(Central_Top < CurrentLevelBuy)
         {
-            //int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, Level_Buy, NULL , NULL,  currentBuyVolume);
-           int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, Level_Buy, NULL , NULL,  currentBuyVolume);
+            //int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
+           int r = Place_Market_Order_Dev(ORDER_TYPE_BUY, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
         }
 
     }
     
 
-    // Last_Level_Sell = Level_Sell;
-    // Last_Level_Buy = Level_Buy;
+    // Last_CurrentLevelSell = CurrentLevelSell;
+    // Last_CurrentLevelBuy = CurrentLevelBuy;
 
     SetLastOrtderSettings();
 
@@ -368,11 +368,11 @@ void SetOrderBuyLimit()
     {
         if(CountOrdersForPairType(ORDER_TYPE_BUY_LIMIT) == 0)
         {
-            int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, Level_Buy, NULL , NULL,  currentBuyVolume);
+            int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
             placedOrderCheck(r, 1);
         }
     }
-    Last_Level_Buy = Level_Buy;
+    Last_CurrentLevelBuy = CurrentLevelBuy;
     SO_Follow_8_TopDisplay();
 }
 
@@ -383,26 +383,26 @@ void SetOrderSellLimit()
     {
         if(CountOrdersForPairType(ORDER_TYPE_SELL_LIMIT) == 0) 
         {
-            int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, Level_Sell, NULL , NULL,  currentSellVolume);
+            int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, CurrentLevelSell, NULL , NULL,  currentSellVolume);
             placedOrderCheck(r, -1);
         }
     }
-    Last_Level_Sell = Level_Sell;
+    Last_CurrentLevelSell = CurrentLevelSell;
     SO_Follow_8_TopDisplay();
 }
 
 void ModifyOrderBuyLimit()
 {
-    int r = UpdateOrderByType(EN_ORDER_TYPE_LONG, Level_Buy, currentBuyVolume);
+    int r = UpdateOrderByType(EN_ORDER_TYPE_LONG, CurrentLevelBuy, currentBuyVolume);
     modifiedOrderCheck(r, 1);
-    Last_Level_Buy = Level_Buy;
+    Last_CurrentLevelBuy = CurrentLevelBuy;
     SO_Follow_8_TopDisplay();
 }
 void ModifyOrderSellLimit()
 {
-    int r = UpdateOrderByType(EN_ORDER_TYPE_SHORT, Level_Sell, currentSellVolume);
+    int r = UpdateOrderByType(EN_ORDER_TYPE_SHORT, CurrentLevelSell, currentSellVolume);
     modifiedOrderCheck(r, -1);
-    Last_Level_Sell = Level_Sell;
+    Last_CurrentLevelSell = CurrentLevelSell;
     SO_Follow_8_TopDisplay();
 }
 
@@ -414,12 +414,12 @@ void Set_Order_Sell_Limit()
         CancelSellOrders(_Symbol, "CheckSellManagemente_Evo"); 
         if(BREAK_MODE)
         {
-            int r = Place_Order_Dev(ORDER_TYPE_SELL_STOP, Level_Sell, Level_sl_short , Level_tp_short,  currentSellVolume);
+            int r = Place_Order_Dev(ORDER_TYPE_SELL_STOP, CurrentLevelSell, Level_sl_short , Level_tp_short,  currentSellVolume);
 
         }
         else
         {
-            int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, Level_Sell, Level_sl_short , Level_tp_short,  currentSellVolume);
+            int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, CurrentLevelSell, Level_sl_short , Level_tp_short,  currentSellVolume);
         }
         //placedOrderCheck(r, -1);
         
@@ -433,11 +433,11 @@ void Set_Order_Buy_Limit()
         CancelBuyOrders(_Symbol, "CheckBuyManagemente_Evo");
         if(BREAK_MODE)
         {
-            int r = Place_Order_Dev(ORDER_TYPE_BUY_STOP, Level_Buy, Level_sl_long , Level_tp_long,  currentBuyVolume);
+            int r = Place_Order_Dev(ORDER_TYPE_BUY_STOP, CurrentLevelBuy, Level_sl_long , Level_tp_long,  currentBuyVolume);
         }
         else
         {
-            int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, Level_Buy, Level_sl_long , Level_tp_long,  currentBuyVolume);
+            int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, CurrentLevelBuy, Level_sl_long , Level_tp_long,  currentBuyVolume);
         }
 
         
@@ -456,7 +456,7 @@ void Set_Order_Limit(int callFrom)
 
 
   if(currentPositionVolume > SELECTED_MINIMUN_POSITION_VOLUME){
-    if(Level_Sell != Last_Level_Sell && SELL_TREND_OK)
+    if(CurrentLevelSell != Last_CurrentLevelSell && SELL_TREND_OK)
     {
       Set_Order_Sell_Limit();
       place_sell += 1;
@@ -479,8 +479,8 @@ void Set_Order_Limit(int callFrom)
     }
   }
 
-  //if(Level_Buy != Last_Level_Buy || Last_Buy_Vol != currentBuyVolume)
-  if(Level_Buy != Last_Level_Buy && BUY_TREND_OK)
+  //if(CurrentLevelBuy != Last_CurrentLevelBuy || Last_Buy_Vol != currentBuyVolume)
+  if(CurrentLevelBuy != Last_CurrentLevelBuy && BUY_TREND_OK)
   {
     {
       Set_Order_Buy_Limit();
@@ -516,22 +516,22 @@ void Set_Order_Limit(int callFrom)
   MarketOrder_Sell_Drawings_Dev();
   SetLastOrtderSettings();
 
-  // if(Last_Level_Sell != Level_Sell)
+  // if(Last_CurrentLevelSell != CurrentLevelSell)
   // {
 
-  //     Print("Last_Level_Sell :", Last_Level_Sell);
-  //     Print("Level_Sell :", Level_Sell);
+  //     Print("Last_CurrentLevelSell :", Last_CurrentLevelSell);
+  //     Print("CurrentLevelSell :", CurrentLevelSell);
 
   // }
-  // if(Last_Level_Buy != Level_Buy)
+  // if(Last_CurrentLevelBuy != CurrentLevelBuy)
   // {
-  //     Print("Last_Level_Buy :", Last_Level_Buy);
-  //     Print("Level_Buy :", Level_Buy); 
+  //     Print("Last_CurrentLevelBuy :", Last_CurrentLevelBuy);
+  //     Print("CurrentLevelBuy :", CurrentLevelBuy); 
   // }
 }
 void SetLastOrtderSettings(){
-  Last_Level_Sell = Level_Sell;
-  Last_Level_Buy = Level_Buy;
+  Last_CurrentLevelSell = CurrentLevelSell;
+  Last_CurrentLevelBuy = CurrentLevelBuy;
   Last_Buy_Vol = currentBuyVolume;
   Last_Sell_Vol = currentSellVolume;
 }
@@ -544,18 +544,18 @@ void Set_Place_Order_Dev()
         {
             if(CountOrdersForPairType(ORDER_TYPE_SELL_LIMIT) == 0 && CountOrdersForPairType(ORDER_TYPE_SELL_STOP) == 0) 
             {
-                int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, Level_Sell, NULL , NULL,  currentSellVolume);
+                int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, CurrentLevelSell, NULL , NULL,  currentSellVolume);
                 placedOrderCheck(r, -1);
             }
             else 
             {
-                if(Level_Sell != Last_Level_Sell)
+                if(CurrentLevelSell != Last_CurrentLevelSell)
                 {
                     
                     CancelSellOrders(_Symbol, "CheckSellManagemente_Evo"); 
-                    int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, Level_Sell, NULL , NULL,  currentSellVolume);
+                    int r = Place_Order_Dev(EN_ORDER_TYPE_SHORT, CurrentLevelSell, NULL , NULL,  currentSellVolume);
                     
-                    //int r = UpdateOrderByType(EN_ORDER_TYPE_SHORT, Level_Sell, currentSellVolume);
+                    //int r = UpdateOrderByType(EN_ORDER_TYPE_SHORT, CurrentLevelSell, currentSellVolume);
                     modifiedOrderCheck(r, -1);
                 }
             }
@@ -570,24 +570,24 @@ void Set_Place_Order_Dev()
             
             if(CountOrdersForPairType(ORDER_TYPE_BUY_LIMIT) == 0 && CountOrdersForPairType(ORDER_TYPE_BUY_STOP) == 0)// || CountOrdersForPairType(ORDER_TYPE_BUY_STOP_LIMIT) == 0 || CountOrdersForPairType(ORDER_TYPE_BUY_STOP) == 0) 
             {
-                int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, Level_Buy, NULL , NULL,  currentBuyVolume);
+                int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
                 placedOrderCheck(r, 1);
             }
             else
             {
-                if(Level_Buy != Last_Level_Buy)
+                if(CurrentLevelBuy != Last_CurrentLevelBuy)
                 {
                     CancelBuyOrders(_Symbol, "CheckBuyManagemente_Evo");   
-                    int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, Level_Buy, NULL , NULL,  currentBuyVolume);
-                    //int r = UpdateOrderByType(EN_ORDER_TYPE_LONG, Level_Buy, currentBuyVolume);
+                    int r = Place_Order_Dev(EN_ORDER_TYPE_LONG, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
+                    //int r = UpdateOrderByType(EN_ORDER_TYPE_LONG, CurrentLevelBuy, currentBuyVolume);
                     modifiedOrderCheck(r, 1);
                 }
             }
         }
     }
 
-    // Last_Level_Sell = Level_Sell;
-    // Last_Level_Buy = Level_Buy;
+    // Last_CurrentLevelSell = CurrentLevelSell;
+    // Last_CurrentLevelBuy = CurrentLevelBuy;
     // Last_Buy_Vol = currentBuyVolume;
     // Last_Sell_Vol = currentSellVolume;
     SetLastOrtderSettings();
@@ -606,18 +606,18 @@ void Set_Place_Order_Dev_F()
         {
             if(CountOrdersForPairType(ORDER_TYPE_SELL_LIMIT) == 0 && CountOrdersForPairType(ORDER_TYPE_SELL_STOP) == 0) 
             {
-                int r = Place_Order_Dev(ORDER_TYPE_SELL_STOP, Level_Sell, NULL , NULL,  currentSellVolume);
+                int r = Place_Order_Dev(ORDER_TYPE_SELL_STOP, CurrentLevelSell, NULL , NULL,  currentSellVolume);
                 placedOrderCheck(r, -1);
             }
             else 
             {
-                if(Level_Sell != Last_Level_Sell)
+                if(CurrentLevelSell != Last_CurrentLevelSell)
                 {
                     
                     CancelSellOrders(_Symbol, "CheckSellManagemente_Evo"); 
-                    int r = Place_Order_Dev(ORDER_TYPE_SELL_STOP, Level_Sell, NULL , NULL,  currentSellVolume);
+                    int r = Place_Order_Dev(ORDER_TYPE_SELL_STOP, CurrentLevelSell, NULL , NULL,  currentSellVolume);
                     
-                    //int r = UpdateOrderByType(EN_ORDER_TYPE_SHORT, Level_Sell, currentSellVolume);
+                    //int r = UpdateOrderByType(EN_ORDER_TYPE_SHORT, CurrentLevelSell, currentSellVolume);
                     modifiedOrderCheck(r, -1);
                 }
             }
@@ -632,24 +632,24 @@ void Set_Place_Order_Dev_F()
             
             if(CountOrdersForPairType(ORDER_TYPE_BUY_LIMIT) == 0 && CountOrdersForPairType(ORDER_TYPE_BUY_STOP) == 0)// || CountOrdersForPairType(ORDER_TYPE_BUY_STOP_LIMIT) == 0 || CountOrdersForPairType(ORDER_TYPE_BUY_STOP) == 0) 
             {
-                int r = Place_Order_Dev(ORDER_TYPE_BUY_STOP, Level_Buy, NULL , NULL,  currentBuyVolume);
+                int r = Place_Order_Dev(ORDER_TYPE_BUY_STOP, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
                 placedOrderCheck(r, 1);
             }
             else
             {
-                if(Level_Buy != Last_Level_Buy)
+                if(CurrentLevelBuy != Last_CurrentLevelBuy)
                 {
                     CancelBuyOrders(_Symbol, "CheckBuyManagemente_Evo");   
-                    int r = Place_Order_Dev(ORDER_TYPE_BUY_STOP, Level_Buy, NULL , NULL,  currentBuyVolume);
-                    //int r = UpdateOrderByType(EN_ORDER_TYPE_LONG, Level_Buy, currentBuyVolume);
+                    int r = Place_Order_Dev(ORDER_TYPE_BUY_STOP, CurrentLevelBuy, NULL , NULL,  currentBuyVolume);
+                    //int r = UpdateOrderByType(EN_ORDER_TYPE_LONG, CurrentLevelBuy, currentBuyVolume);
                     modifiedOrderCheck(r, 1);
                 }
             }
         }
   //  }
 
-    // Last_Level_Sell = Level_Sell;
-    // Last_Level_Buy = Level_Buy;
+    // Last_CurrentLevelSell = CurrentLevelSell;
+    // Last_CurrentLevelBuy = CurrentLevelBuy;
     // Last_Buy_Vol = currentBuyVolume;
     // Last_Sell_Vol = currentSellVolume;
     SetLastOrtderSettings();
@@ -668,9 +668,9 @@ void modifiedOrderCheck(int r, int side)
 {
     if(r == 1 && side ==1)
     {
-        Setted_Last_Level_Buy = Level_Buy;
+        Setted_Last_CurrentLevelBuy = CurrentLevelBuy;
         Deal_Last_Level = Deal_Current_Level;
-        Deal_Current_Level = Level_Buy;
+        Deal_Current_Level = CurrentLevelBuy;
        // Print("modify buy - ok");
     }
     else
@@ -679,9 +679,9 @@ void modifiedOrderCheck(int r, int side)
     }
     if(r == 1 && side == -1)
     {
-        Setted_Last_Level_Sell = Level_Sell;
+        Setted_Last_CurrentLevelSell = CurrentLevelSell;
         Deal_Last_Level = Deal_Current_Level;
-        Deal_Current_Level = Level_Sell;
+        Deal_Current_Level = CurrentLevelSell;
        // Print("modify sell - ok");
     }
     else
@@ -694,9 +694,9 @@ void placedOrderCheck(int r, int side)
 {
     if(r == 1 && side ==1)
     {
-        Setted_Last_Level_Buy = Level_Buy;
+        Setted_Last_CurrentLevelBuy = CurrentLevelBuy;
         Deal_Last_Level = Deal_Current_Level;
-        Deal_Current_Level = Level_Buy;
+        Deal_Current_Level = CurrentLevelBuy;
        // Print("modify buy - ok");
     }
     else
@@ -705,9 +705,9 @@ void placedOrderCheck(int r, int side)
     }
     if(r == 1 && side == -1)
     {
-        Setted_Last_Level_Sell = Level_Sell;
+        Setted_Last_CurrentLevelSell = CurrentLevelSell;
         Deal_Last_Level = Deal_Current_Level;
-        Deal_Current_Level = Level_Sell;
+        Deal_Current_Level = CurrentLevelSell;
        // Print("modify sell - ok");
     }
     else
@@ -720,20 +720,20 @@ void placedOrderCheck(int r, int side)
 
 void SO_Follow_8_TopDisplay()
 {
-    SPD_LEVELS = (Level_Sell - Level_Buy);
+    SPD_LEVELS = (CurrentLevelSell - CurrentLevelBuy);
     spd = NormalizeDouble(SPD_LEVELS,_Digits);
-    double spd_buy = Last_Level_Buy - Level_Buy;
-    double spd_sell = Last_Level_Sell - Level_Sell;
+    double spd_buy = Last_CurrentLevelBuy - CurrentLevelBuy;
+    double spd_sell = Last_CurrentLevelSell - CurrentLevelSell;
 
 
        
     Comment("TopChange ->  "+ TopChange,
     "\n SellVolChange ->  " + SellVolChange,
-    "\n Level_Sell ->  " + Level_Sell,
+    "\n CurrentLevelSell ->  " + CurrentLevelSell,
     "\n ------------------------------------",
     "\n BottomChange ->  " + BottomChange,
     "\n BuyVolChange ->  " + BuyVolChange,
-    "\n Level_Buy ->  " + Level_Buy,
+    "\n CurrentLevelBuy ->  " + CurrentLevelBuy,
     "\n SPD ->  " + spd,
     "\n madst ->  " + madst
     

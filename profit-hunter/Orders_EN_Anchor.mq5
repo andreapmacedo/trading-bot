@@ -21,11 +21,11 @@ void EN_OrderAnchor_Settings(int chosen)
 
 void EN_STR_Anchor_101()
 {
-    Level_Buy = PriceInfo[1].low;
-    Level_Sell = PriceInfo[1].high;
+    CurrentLevelBuy = PriceInfo[1].low;
+    CurrentLevelSell = PriceInfo[1].high;
 }
 void EN_STR_Anchor_201()
 {
-    Level_Buy = PriceInfo[1].high;
-    Level_Sell = PriceInfo[1].low;
+    CurrentLevelBuy = PriceInfo[1].high;
+    CurrentLevelSell = PriceInfo[1].low;
 }

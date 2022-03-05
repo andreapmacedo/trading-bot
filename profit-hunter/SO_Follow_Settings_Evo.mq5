@@ -491,10 +491,10 @@ void MarketOrder_Drawings()
     double Last_Buy_Vol = 0;
     double Last_Sell_Vol = 0;
 
-    double Last_Level_Buy = 0;
-    double Last_Level_Sell = 0;
-    double Level_Buy = 0;
-    double Level_Sell = 0;
+    double Last_CurrentLevelBuy = 0;
+    double Last_CurrentLevelSell = 0;
+    double CurrentLevelBuy = 0;
+    double CurrentLevelSell = 0;
 
 
     double Freeze_Central_Top = 0;
@@ -782,7 +782,7 @@ void SetBottomMagneticMovie()
     }
     
     SetLowLevels();
-    Level_Buy = Highest_Bottom;
+    CurrentLevelBuy = Highest_Bottom;
 }
 void SetTopMagneticMovie()
 {
@@ -796,7 +796,7 @@ void SetTopMagneticMovie()
     }
 
     SetHighLevels();
-    Level_Sell = Lowest_Top;
+    CurrentLevelSell = Lowest_Top;
 }
 
 double LAST_SPD = 0;
@@ -817,7 +817,7 @@ void SetTopMagneticMovie_Pro()
     }
 
     SetHighLevels();
-    Level_Sell = Lowest_Top;
+    CurrentLevelSell = Lowest_Top;
     
     if(SPD_LEVELS > LAST_SPD)
     {
@@ -852,7 +852,7 @@ void SetBottomMagneticMovie_Pro()
     }
     
     SetLowLevels();
-    Level_Buy = Highest_Bottom;
+    CurrentLevelBuy = Highest_Bottom;
 
     if(SPD_LEVELS > LAST_SPD)
     {

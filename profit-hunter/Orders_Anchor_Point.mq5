@@ -67,26 +67,26 @@ enum enum_EN_Anchor
 
 void Set_EN_OrderAnchor_001()
 {
-    Level_Buy = PriceInfo[1].low;
-    Level_Sell = PriceInfo[1].high;
+    CurrentLevelBuy = PriceInfo[1].low;
+    CurrentLevelSell = PriceInfo[1].high;
 }
 void Set_EN_OrderAnchor_002()
 {
-    Level_Buy = PriceInfo[1].high;
-    Level_Sell = PriceInfo[1].low;
+    CurrentLevelBuy = PriceInfo[1].high;
+    CurrentLevelSell = PriceInfo[1].low;
 }
 void Set_EN_OrderAnchor_003()
 {
     double half_Level = ((PriceInfo[1].high - PriceInfo[1].low)/2); 
-    Level_Buy = half_Level;
-    Level_Sell = half_Level;
+    CurrentLevelBuy = half_Level;
+    CurrentLevelSell = half_Level;
 }
 
 
 void Set_TP_OrderAnchor_001()
 {
-    Level_tp_long = Level_Buy;
-    Level_tp_short = Level_Sell;
+    Level_tp_long = CurrentLevelBuy;
+    Level_tp_short = CurrentLevelSell;
 }
 void Set_TP_OrderAnchor_002()
 {
@@ -101,8 +101,8 @@ void Set_TP_OrderAnchor_003()
 
 void Set_SL_OrderAnchor_001()
 {
-    Level_sl_long = Level_Buy;
-    Level_sl_short = Level_Sell;
+    Level_sl_long = CurrentLevelBuy;
+    Level_sl_short = CurrentLevelSell;
 }
 void Set_SL_OrderAnchor_002()
 {

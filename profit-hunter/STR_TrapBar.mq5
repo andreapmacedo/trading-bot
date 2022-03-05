@@ -25,12 +25,12 @@ int ORD_Strategy_100()
     // }
 
     //BREAK_MODE = true;
-    Level_Buy = PriceInfo[1].low;
-    Level_Sell = PriceInfo[1].high;
+    CurrentLevelBuy = PriceInfo[1].low;
+    CurrentLevelSell = PriceInfo[1].high;
     TopChange +=  5;
     BottomChange += 5;
-    Level_Sell += TopChange;
-    Level_Buy -= BottomChange;   
+    CurrentLevelSell += TopChange;
+    CurrentLevelBuy -= BottomChange;   
 
 
     SELECTED_TP_ON = true;
@@ -38,8 +38,8 @@ int ORD_Strategy_100()
     // Level_tp_short = NULL;
 
 
-    // Level_tp_long = Level_Buy - 150;
-    // Level_tp_short = Level_Sell + 150;
+    // Level_tp_long = CurrentLevelBuy - 150;
+    // Level_tp_short = CurrentLevelSell + 150;
 
     Level_tp_long = PriceInfo[1].high + 5;
     Level_tp_short = PriceInfo[1].low - 5;
@@ -49,8 +49,8 @@ int ORD_Strategy_100()
     // SELECTED_SL_ON  = true;
     // // Level_sl_long = NULL; 
     // // Level_sl_short = NULL;
-    Level_sl_long = Level_Buy - 25; 
-    Level_sl_short = Level_Sell + 25;
+    Level_sl_long = CurrentLevelBuy - 25; 
+    Level_sl_short = CurrentLevelSell + 25;
     // Level_sl_long = PriceInfo[1].low - 30; 
     // Level_sl_short = PriceInfo[1].high + 30;
 
@@ -79,12 +79,12 @@ int ORD_Strategy_101()
 {
     //Print("ORD_Strategy_101");
 
-    // Level_Buy = PriceInfo[1].low;
-    // Level_Sell = PriceInfo[1].high;
+    // CurrentLevelBuy = PriceInfo[1].low;
+    // CurrentLevelSell = PriceInfo[1].high;
     EN_STR_Anchor_101();
     EN_STR_Distance_1();
-    Level_Sell += TopChange;
-    Level_Buy -= BottomChange;    
+    CurrentLevelSell += TopChange;
+    CurrentLevelBuy -= BottomChange;    
     
     // TopChange +=  5;
     // BottomChange += 5;
@@ -95,8 +95,8 @@ int ORD_Strategy_101()
     // Level_tp_short = NULL;
 
 
-    // Level_tp_long = Level_Buy - 150;
-    // Level_tp_short = Level_Sell + 150;
+    // Level_tp_long = CurrentLevelBuy - 150;
+    // Level_tp_short = CurrentLevelSell + 150;
 
     SELECTED_TP_ON = true;
     // Level_tp_long = PriceInfo[1].high + 5;
@@ -109,8 +109,8 @@ int ORD_Strategy_101()
     SELECTED_SL_ON  = true;
     // Level_sl_long = NULL; 
     // Level_sl_short = NULL;
-    // Level_sl_long = Level_Buy - 25; 
-    // Level_sl_short = Level_Sell + 25;
+    // Level_sl_long = CurrentLevelBuy - 25; 
+    // Level_sl_short = CurrentLevelSell + 25;
 
     SL_STR_Anchor_101();
     SL_STR_Distance_1();

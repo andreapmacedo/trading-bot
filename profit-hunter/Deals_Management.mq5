@@ -627,16 +627,16 @@ void OnTradeTransaction(const MqlTradeTransaction & trans,
 					if(CURRENT_DEAL_TYPE == DEAL_TYPE_BUY)
 					{
 						LAST_DEAL_TYPE_STATUS = "c";
-						//Deal_Current_Level = Last_Level_Buy;
-						//Deal_Current_Level = Deal_Current_Level_Buy;
-						//Deal_Current_Level = Setted_Last_Level_Buy;
+						//Deal_Current_Level = Last_CurrentLevelBuy;
+						//Deal_Current_Level = Deal_Current_CurrentLevelBuy;
+						//Deal_Current_Level = Setted_Last_CurrentLevelBuy;
 					}
 					else if(CURRENT_DEAL_TYPE == DEAL_TYPE_SELL)
 					{
 						LAST_DEAL_TYPE_STATUS = "v";
-						//Deal_Current_Level = Last_Level_Sell;
-						//Deal_Current_Level = Deal_Current_Level_Sell;
-						//Deal_Current_Level = Setted_Last_Level_Sell;
+						//Deal_Current_Level = Last_CurrentLevelSell;
+						//Deal_Current_Level = Deal_Current_CurrentLevelSell;
+						//Deal_Current_Level = Setted_Last_CurrentLevelSell;
 					}
 					else
 					{
@@ -659,8 +659,8 @@ void OnTradeTransaction(const MqlTradeTransaction & trans,
 					// Print("--------------------------------------");
 					// Print("HistoryDealSelect -> ", _Symbol);
 					// Print("--------------------------------------");
-					// Print("Setted_Last_Level_Buy -> ", Setted_Last_Level_Buy);
-					// Print("Setted_Last_Level_Sell -> ", Setted_Last_Level_Sell);
+					// Print("Setted_Last_CurrentLevelBuy -> ", Setted_Last_CurrentLevelBuy);
+					// Print("Setted_Last_CurrentLevelSell -> ", Setted_Last_CurrentLevelSell);
 					// Print("--------------------------------------");
 					// Print("--------------------------------------");
 					// Print("CURRENT_DEAL_PRICE -> ", CURRENT_DEAL_PRICE);
@@ -668,8 +668,8 @@ void OnTradeTransaction(const MqlTradeTransaction & trans,
 					// Print("my_current_deal -> ", my_current_deal);
 					// Print("my_last_deal -> ", my_last_deal);
 					// Print("--------------------------------------");
-					// Print("Last_Level_Buy -> ", Last_Level_Buy);
-					// Print("Last_Level_Sell -> ", Last_Level_Sell);
+					// Print("Last_CurrentLevelBuy -> ", Last_CurrentLevelBuy);
+					// Print("Last_CurrentLevelSell -> ", Last_CurrentLevelSell);
 					// Print("--------------------------------------");
 					
 					//MyGetPositionData();

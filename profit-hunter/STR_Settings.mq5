@@ -164,7 +164,7 @@ int ORD_Strategy_002()
     {
         // if(temp_vol <= 2 && pos_status == 1)
         // {
-        //     Level_Buy = SERVER_SYMBOL_BID;
+        //     CurrentLevelBuy = SERVER_SYMBOL_BID;
         //     currentBuyVolume  = SELECTED_VOLUME_LONG * 2;
         //     currentSellVolume  = SELECTED_VOLUME_SHORT ;
         // }
@@ -174,7 +174,7 @@ int ORD_Strategy_002()
             
             if(TREND_CHANGED)
             {
-                Level_Buy = SERVER_SYMBOL_BID;
+                CurrentLevelBuy = SERVER_SYMBOL_BID;
             }
             else
             {
@@ -196,7 +196,7 @@ int ORD_Strategy_002()
 
             if(TREND_CHANGED)
             {
-                Level_Sell = SERVER_SYMBOL_ASK;
+                CurrentLevelSell = SERVER_SYMBOL_ASK;
             }
             else
             {
@@ -213,7 +213,7 @@ int ORD_Strategy_002()
         // }
         // if( pos_status == 1)
         // {        
-        //     Level_Sell = SERVER_SYMBOL_ASK;
+        //     CurrentLevelSell = SERVER_SYMBOL_ASK;
         //     currentBuyVolume  = SELECTED_VOLUME_LONG ;
         //     currentSellVolume  = SELECTED_VOLUME_SHORT * 2;
         // }
@@ -333,8 +333,8 @@ int ORD_Strategy_004()
     {
         if(TREND_SIDE_CHANGED)
         {
-            //Level_Buy = SERVER_SYMBOL_BID;
-            Level_Buy = SERVER_SYMBOL_ASK;
+            //CurrentLevelBuy = SERVER_SYMBOL_BID;
+            CurrentLevelBuy = SERVER_SYMBOL_ASK;
             currentBuyVolume  = (SELECTED_VOLUME_LONG * temp_vol);
         }
         else
@@ -351,8 +351,8 @@ int ORD_Strategy_004()
     {
         if(TREND_SIDE_CHANGED)
         {
-            //Level_Sell = SERVER_SYMBOL_ASK;
-            Level_Sell = SERVER_SYMBOL_BID;
+            //CurrentLevelSell = SERVER_SYMBOL_ASK;
+            CurrentLevelSell = SERVER_SYMBOL_BID;
             currentSellVolume  = (SELECTED_VOLUME_SHORT * temp_vol);
         }
         else
@@ -399,7 +399,7 @@ int ORD_Strategy_004()
         currentBuyVolume  = SELECTED_VOLUME_LONG * 2;
        // CancelSellOrders(_Symbol, "trend down"); 
        // SELL_TREND_OK = false;
-       // Level_Buy = SERVER_SYMBOL_BID;
+       // CurrentLevelBuy = SERVER_SYMBOL_BID;
         TopChange = SELECTED_EN_DISTANCE_SHORT * 4;
        
     }
@@ -409,7 +409,7 @@ int ORD_Strategy_004()
     {
        // CancelBuyOrders(_Symbol, "trend up"); 
        // BUY_TREND_OK = false;
-       // Level_Sell = SERVER_SYMBOL_ASK;
+       // CurrentLevelSell = SERVER_SYMBOL_ASK;
        BottomChange = SELECTED_EN_DISTANCE_LONG * 4;
        currentSellVolume  = SELECTED_VOLUME_SHORT * 2;
     }
@@ -465,13 +465,13 @@ int ORD_Strategy_005()
         ) 
     {
         //TopChange = SELECTED_EN_DISTANCE_SHORT * 4;
-        Level_Buy = SERVER_SYMBOL_ASK;
+        CurrentLevelBuy = SERVER_SYMBOL_ASK;
         currentBuyVolume  = (SELECTED_VOLUME_LONG * temp_vol);
         currentSellVolume  = SELECTED_VOLUME_SHORT ;
         SELL_TREND_OK = false;
         // if(TREND_SIDE_CHANGED)
         // {
-        //     //Level_Buy = SERVER_SYMBOL_BID;
+        //     //CurrentLevelBuy = SERVER_SYMBOL_BID;
         // }
         // else
         // {
@@ -484,16 +484,16 @@ int ORD_Strategy_005()
             CurrentTradingStatus == 3 // caindo e comprado
         ) 
     {
- //            Level_Buy = SERVER_SYMBOL_ASK;
+ //            CurrentLevelBuy = SERVER_SYMBOL_ASK;
         //BottomChange = SELECTED_EN_DISTANCE_LONG * 4;
-        Level_Sell = SERVER_SYMBOL_BID;
+        CurrentLevelSell = SERVER_SYMBOL_BID;
         currentSellVolume  = (SELECTED_VOLUME_SHORT * temp_vol);
         currentBuyVolume  = SELECTED_VOLUME_LONG ;
         BUY_TREND_OK = false;
 
         // if(TREND_SIDE_CHANGED)
         // {
-        //     //Level_Sell = SERVER_SYMBOL_ASK;
+        //     //CurrentLevelSell = SERVER_SYMBOL_ASK;
         // }
         // else
         // {
@@ -543,7 +543,7 @@ int ORD_Strategy_005()
         currentSellVolume  = SELECTED_VOLUME_SHORT;
        // CancelSellOrders(_Symbol, "trend down"); 
         SELL_TREND_OK = false;
-       // Level_Buy = SERVER_SYMBOL_BID;
+       // CurrentLevelBuy = SERVER_SYMBOL_BID;
         //TopChange = SELECTED_EN_DISTANCE_SHORT * 4;
        
     }
@@ -554,7 +554,7 @@ int ORD_Strategy_005()
        // CancelBuyOrders(_Symbol, "trend up"); 
        
         BUY_TREND_OK = false;
-       // Level_Sell = SERVER_SYMBOL_ASK;
+       // CurrentLevelSell = SERVER_SYMBOL_ASK;
        currentBuyVolume  = SELECTED_VOLUME_LONG;
        //BottomChange = SELECTED_EN_DISTANCE_LONG * 4;
        currentSellVolume  = SELECTED_VOLUME_SHORT * 2;
@@ -633,13 +633,13 @@ int ORD_Strategy_006()
         ) 
     {
        // TopChange = SELECTED_EN_DISTANCE_SHORT * 4;
-        Level_Buy = SERVER_SYMBOL_ASK;
+        CurrentLevelBuy = SERVER_SYMBOL_ASK;
         currentBuyVolume  = (SELECTED_VOLUME_LONG * temp_vol);
         currentSellVolume  = SELECTED_VOLUME_SHORT ;
         //SELL_TREND_OK = false;
         // if(TREND_SIDE_CHANGED)
         // {
-        //     //Level_Buy = SERVER_SYMBOL_BID;
+        //     //CurrentLevelBuy = SERVER_SYMBOL_BID;
         // }
         // else
         // {
@@ -652,16 +652,16 @@ int ORD_Strategy_006()
             CurrentTradingStatus == 3 // caindo e comprado
         ) 
     {
- //            Level_Buy = SERVER_SYMBOL_ASK;
+ //            CurrentLevelBuy = SERVER_SYMBOL_ASK;
        // BottomChange = SELECTED_EN_DISTANCE_LONG * 4;
-        Level_Sell = SERVER_SYMBOL_BID;
+        CurrentLevelSell = SERVER_SYMBOL_BID;
         currentSellVolume  = (SELECTED_VOLUME_SHORT * temp_vol);
         currentBuyVolume  = SELECTED_VOLUME_LONG ;
         //BUY_TREND_OK = false;
 
         // if(TREND_SIDE_CHANGED)
         // {
-        //     //Level_Sell = SERVER_SYMBOL_ASK;
+        //     //CurrentLevelSell = SERVER_SYMBOL_ASK;
         // }
         // else
         // {
@@ -711,8 +711,8 @@ int ORD_Strategy_006()
         currentSellVolume  = SELECTED_VOLUME_SHORT;
        // CancelSellOrders(_Symbol, "trend down"); 
         //SELL_TREND_OK = false;
-        //Level_Buy = SERVER_SYMBOL_BID;
-        Level_Buy = SERVER_SYMBOL_ASK;
+        //CurrentLevelBuy = SERVER_SYMBOL_BID;
+        CurrentLevelBuy = SERVER_SYMBOL_ASK;
        // TopChange = SELECTED_EN_DISTANCE_SHORT * 4;
        
     }
@@ -723,8 +723,8 @@ int ORD_Strategy_006()
        // CancelBuyOrders(_Symbol, "trend up"); 
        
        // BUY_TREND_OK = false;
-       //Level_Sell = SERVER_SYMBOL_ASK;
-       Level_Sell = SERVER_SYMBOL_BID;
+       //CurrentLevelSell = SERVER_SYMBOL_ASK;
+       CurrentLevelSell = SERVER_SYMBOL_BID;
        currentBuyVolume  = SELECTED_VOLUME_LONG;
        //BottomChange = SELECTED_EN_DISTANCE_LONG * 4;
        currentSellVolume  = SELECTED_VOLUME_SHORT * 2;
@@ -802,7 +802,7 @@ int ORD_Strategy_007()
         //if(TREND_CHANGED)
         if(TREND_SIDE_CHANGED)
         {
-            Level_Buy = SERVER_SYMBOL_BID;
+            CurrentLevelBuy = SERVER_SYMBOL_BID;
         }
         else
         {
@@ -818,7 +818,7 @@ int ORD_Strategy_007()
         //if(TREND_CHANGED)
         if(TREND_SIDE_CHANGED)
         {
-            Level_Sell = SERVER_SYMBOL_ASK;
+            CurrentLevelSell = SERVER_SYMBOL_ASK;
         }
         else
         {
@@ -921,7 +921,7 @@ int ORD_Strategy_008()
         
         if(TREND_SIDE_CHANGED)
         {
-            Level_Buy = SERVER_SYMBOL_BID;
+            CurrentLevelBuy = SERVER_SYMBOL_BID;
             //ResetAxlesLevels();
             //CountFreezeCentralLevel == 0;
         }
@@ -939,7 +939,7 @@ int ORD_Strategy_008()
         //if(TREND_CHANGED)
         if(TREND_SIDE_CHANGED)
         {
-            Level_Sell = SERVER_SYMBOL_ASK;
+            CurrentLevelSell = SERVER_SYMBOL_ASK;
             //ResetAxlesLevels();
             //CountFreezeCentralLevel == 0;
         }
@@ -1050,7 +1050,7 @@ int ORD_Strategy_009()
         // else
         // {
         // }
-        Level_Buy = SERVER_SYMBOL_BID;
+        CurrentLevelBuy = SERVER_SYMBOL_BID;
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN);
         BottomChange = 0;
         
@@ -1070,7 +1070,7 @@ int ORD_Strategy_009()
         // else
         // {
         // }
-        Level_Sell = SERVER_SYMBOL_ASK;
+        CurrentLevelSell = SERVER_SYMBOL_ASK;
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN);
         TopChange = 0;
         currentBuyVolume  = SELECTED_VOLUME_LONG ;
@@ -1166,7 +1166,7 @@ int ORD_Strategy_010()
         // else
         // {
         // }
-        Level_Buy = SERVER_SYMBOL_BID;
+        CurrentLevelBuy = SERVER_SYMBOL_BID;
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN);
         //BottomChange = 0;
         
@@ -1186,7 +1186,7 @@ int ORD_Strategy_010()
         // else
         // {
         // }
-        Level_Sell = SERVER_SYMBOL_ASK;
+        CurrentLevelSell = SERVER_SYMBOL_ASK;
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN);
         //TopChange = 0;
         currentBuyVolume  = SELECTED_VOLUME_LONG ;
@@ -1262,7 +1262,7 @@ int ORD_Strategy_011()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -1275,7 +1275,7 @@ int ORD_Strategy_011()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -1333,9 +1333,9 @@ int ORD_Strategy_011()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -1356,9 +1356,9 @@ int ORD_Strategy_011()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -1375,7 +1375,7 @@ int ORD_Strategy_011()
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN); // tem que vir primeiro
         if(pos_status == 0) // comprado
         {
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -1384,7 +1384,7 @@ int ORD_Strategy_011()
         else // vendido
         {
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -1424,7 +1424,7 @@ int ORD_Strategy_021()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -1437,7 +1437,7 @@ int ORD_Strategy_021()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -1494,9 +1494,9 @@ int ORD_Strategy_021()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -1517,9 +1517,9 @@ int ORD_Strategy_021()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -1536,7 +1536,7 @@ int ORD_Strategy_021()
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN); // tem que vir primeiro
         if(pos_status == 0) // comprado
         {
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -1545,7 +1545,7 @@ int ORD_Strategy_021()
         else // vendido
         {
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -1589,7 +1589,7 @@ int ORD_Strategy_012()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -1602,7 +1602,7 @@ int ORD_Strategy_012()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -1650,9 +1650,9 @@ int ORD_Strategy_012()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -1660,7 +1660,7 @@ int ORD_Strategy_012()
         }
         else // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
            // if(Current_Sell_Seq > 0)
             currentBuyVolume = SELECTED_VOLUME_LONG * 2;
 
@@ -1670,9 +1670,9 @@ int ORD_Strategy_012()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -1689,7 +1689,7 @@ int ORD_Strategy_012()
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN); // tem que vir primeiro
         if(pos_status == 0) // comprado
         {
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -1698,7 +1698,7 @@ int ORD_Strategy_012()
         else // vendido
         {
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -1740,7 +1740,7 @@ int ORD_Strategy_022()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -1753,7 +1753,7 @@ int ORD_Strategy_022()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -1802,9 +1802,9 @@ int ORD_Strategy_022()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -1812,7 +1812,7 @@ int ORD_Strategy_022()
         }
         else // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
            // if(Current_Sell_Seq > 0)
             SetBottomMagneticMovie(); // (est 21)
             currentBuyVolume = SELECTED_VOLUME_LONG * 2;
@@ -1823,9 +1823,9 @@ int ORD_Strategy_022()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -1842,7 +1842,7 @@ int ORD_Strategy_022()
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN); // tem que vir primeiro
         if(pos_status == 0) // comprado
         {
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -1851,7 +1851,7 @@ int ORD_Strategy_022()
         else // vendido
         {
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -1894,7 +1894,7 @@ int ORD_Strategy_013()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -1907,7 +1907,7 @@ int ORD_Strategy_013()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -1955,9 +1955,9 @@ int ORD_Strategy_013()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -1965,7 +1965,7 @@ int ORD_Strategy_013()
         }
         else // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 3;
 
@@ -1975,9 +1975,9 @@ int ORD_Strategy_013()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -1994,7 +1994,7 @@ int ORD_Strategy_013()
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN); // tem que vir primeiro
         if(pos_status == 0) // comprado
         {
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -2003,7 +2003,7 @@ int ORD_Strategy_013()
         else // vendido
         {
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -2046,7 +2046,7 @@ int ORD_Strategy_023()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -2059,7 +2059,7 @@ int ORD_Strategy_023()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -2108,9 +2108,9 @@ int ORD_Strategy_023()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -2118,7 +2118,7 @@ int ORD_Strategy_023()
         }
         else // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             SetBottomMagneticMovie(); // (est 2x)
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 3;
@@ -2129,9 +2129,9 @@ int ORD_Strategy_023()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -2148,7 +2148,7 @@ int ORD_Strategy_023()
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN); // tem que vir primeiro
         if(pos_status == 0) // comprado
         {
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -2157,7 +2157,7 @@ int ORD_Strategy_023()
         else // vendido
         {
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -2200,7 +2200,7 @@ int ORD_Strategy_014()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -2213,7 +2213,7 @@ int ORD_Strategy_014()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -2261,9 +2261,9 @@ int ORD_Strategy_014()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -2271,7 +2271,7 @@ int ORD_Strategy_014()
         }
         else // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             if(Current_Sell_Seq > 0)
             currentBuyVolume = SELECTED_VOLUME_LONG * 3;
 
@@ -2281,9 +2281,9 @@ int ORD_Strategy_014()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -2302,7 +2302,7 @@ int ORD_Strategy_014()
         {
             if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -2313,7 +2313,7 @@ int ORD_Strategy_014()
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -2356,7 +2356,7 @@ int ORD_Strategy_024()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -2369,7 +2369,7 @@ int ORD_Strategy_024()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -2418,9 +2418,9 @@ int ORD_Strategy_024()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -2428,7 +2428,7 @@ int ORD_Strategy_024()
         }
         else // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
 
             SetBottomMagneticMovie(); // (est 2x)
             if(Current_Sell_Seq > 0)
@@ -2440,9 +2440,9 @@ int ORD_Strategy_024()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -2461,7 +2461,7 @@ int ORD_Strategy_024()
         {
             if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -2472,7 +2472,7 @@ int ORD_Strategy_024()
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -2515,7 +2515,7 @@ int ORD_Strategy_015()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -2528,7 +2528,7 @@ int ORD_Strategy_015()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -2575,9 +2575,9 @@ int ORD_Strategy_015()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -2590,7 +2590,7 @@ int ORD_Strategy_015()
 
         if(pos_status == 1) // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             if(Current_Sell_Seq > 0)
             currentBuyVolume = SELECTED_VOLUME_LONG * 3;
 
@@ -2600,9 +2600,9 @@ int ORD_Strategy_015()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -2624,7 +2624,7 @@ int ORD_Strategy_015()
         {
             if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -2639,7 +2639,7 @@ int ORD_Strategy_015()
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -2686,7 +2686,7 @@ int ORD_Strategy_025()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -2699,7 +2699,7 @@ int ORD_Strategy_025()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -2747,9 +2747,9 @@ int ORD_Strategy_025()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -2763,7 +2763,7 @@ int ORD_Strategy_025()
         if(pos_status == 1) // vendido
         {
             SetBottomMagneticMovie(); // (est 2x)
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             if(Current_Sell_Seq > 0)
             currentBuyVolume = SELECTED_VOLUME_LONG * 3;
 
@@ -2773,9 +2773,9 @@ int ORD_Strategy_025()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -2797,7 +2797,7 @@ int ORD_Strategy_025()
         {
             if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -2812,7 +2812,7 @@ int ORD_Strategy_025()
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -2859,7 +2859,7 @@ int ORD_Strategy_016()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -2872,7 +2872,7 @@ int ORD_Strategy_016()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -2919,9 +2919,9 @@ int ORD_Strategy_016()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -2934,7 +2934,7 @@ int ORD_Strategy_016()
 
         if(pos_status == 1) // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             if(Current_Sell_Seq > 1)
             currentBuyVolume = SELECTED_VOLUME_LONG * 2;
 
@@ -2944,9 +2944,9 @@ int ORD_Strategy_016()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -2968,7 +2968,7 @@ int ORD_Strategy_016()
         {
             if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -2983,7 +2983,7 @@ int ORD_Strategy_016()
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -3029,7 +3029,7 @@ int ORD_Strategy_026()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -3042,7 +3042,7 @@ int ORD_Strategy_026()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -3090,9 +3090,9 @@ int ORD_Strategy_026()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -3106,7 +3106,7 @@ int ORD_Strategy_026()
         if(pos_status == 1) // vendido
         {
             SetBottomMagneticMovie(); // (est 2x)
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             if(Current_Sell_Seq > 1)
             currentBuyVolume = SELECTED_VOLUME_LONG * 2;
 
@@ -3116,9 +3116,9 @@ int ORD_Strategy_026()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -3140,7 +3140,7 @@ int ORD_Strategy_026()
         {
             if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -3155,7 +3155,7 @@ int ORD_Strategy_026()
             if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -3201,7 +3201,7 @@ int ORD_Strategy_017()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -3214,7 +3214,7 @@ int ORD_Strategy_017()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -3261,9 +3261,9 @@ int ORD_Strategy_017()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -3276,7 +3276,7 @@ int ORD_Strategy_017()
 
         if(pos_status == 1) // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
           //  if(Current_Sell_Seq > 1)
             currentBuyVolume = SELECTED_VOLUME_LONG * 3;
 
@@ -3286,9 +3286,9 @@ int ORD_Strategy_017()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -3310,7 +3310,7 @@ int ORD_Strategy_017()
         {
            // if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -3325,7 +3325,7 @@ int ORD_Strategy_017()
           //  if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -3371,7 +3371,7 @@ int ORD_Strategy_027()
                 //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
                 // if(spd > SELECTED_EN_DISTANCE_LONG)
                 // {
-                //     Level_Buy = SERVER_SYMBOL_BID;
+                //     CurrentLevelBuy = SERVER_SYMBOL_BID;
                 // }
                 //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
                 BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -3384,7 +3384,7 @@ int ORD_Strategy_027()
                 //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
                 SellVolChange += SELECTED_VOLUME_SHORT ;
                 //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-                    //Level_Sell = SERVER_SYMBOL_ASK;
+                    //CurrentLevelSell = SERVER_SYMBOL_ASK;
                 // if(spd > SELECTED_EN_DISTANCE_SHORT)
                 // {
                 // }                
@@ -3432,9 +3432,9 @@ int ORD_Strategy_027()
             // {
             //     if(SERVER_SYMBOL_ASK <  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG))
             //     {
-            //         //Level_Sell = Freeze_Central_Bottom; 
+            //         //CurrentLevelSell = Freeze_Central_Bottom; 
                     
-            //         Level_Sell = SERVER_SYMBOL_ASK; 
+            //         CurrentLevelSell = SERVER_SYMBOL_ASK; 
             //         currentSellVolume = SELECTED_VOLUME_SHORT ;
             //     }
             // }
@@ -3447,7 +3447,7 @@ int ORD_Strategy_027()
 
         if(pos_status == 1) // vendido
         {
-            //Level_Buy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy = (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
           //  if(Current_Sell_Seq > 1)
             SetBottomMagneticMovie(); // (est 2x)
             currentBuyVolume = SELECTED_VOLUME_LONG * 3;
@@ -3458,9 +3458,9 @@ int ORD_Strategy_027()
             //     if(SERVER_SYMBOL_BID >  (Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT))
             //     {
                     
-            //         //Level_Buy = Freeze_Central_Top;  
+            //         //CurrentLevelBuy = Freeze_Central_Top;  
                     
-            //         Level_Buy = SERVER_SYMBOL_BID; 
+            //         CurrentLevelBuy = SERVER_SYMBOL_BID; 
             //         currentBuyVolume = SELECTED_VOLUME_LONG ;
             //     }
             // }
@@ -3482,7 +3482,7 @@ int ORD_Strategy_027()
         {
            // if(Current_Buy_Seq > 0)
                 currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-            //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+            //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
             
             //SellVolChange  += SELECTED_VOLUME_SHORT;
             //BottomChange = 0;
@@ -3497,7 +3497,7 @@ int ORD_Strategy_027()
           //  if(Current_Sell_Seq > 0)
                 currentBuyVolume = SELECTED_VOLUME_LONG * 2;
             
-            //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+            //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
             //BuyVolChange  += SELECTED_VOLUME_LONG;
            // TopChange += 50;
         }
@@ -3607,7 +3607,7 @@ int ORD_Strategy_012_old()
             CurrentTradingStatus == 2 // subindo e vendido
         ) 
     {
-        Level_Buy = SERVER_SYMBOL_BID;
+        CurrentLevelBuy = SERVER_SYMBOL_BID;
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN);
         //BottomChange = 0;
         
@@ -3618,7 +3618,7 @@ int ORD_Strategy_012_old()
             CurrentTradingStatus == 3 // caindo e comprado
         ) 
     {
-        Level_Sell = SERVER_SYMBOL_ASK;
+        CurrentLevelSell = SERVER_SYMBOL_ASK;
         EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN);
         //TopChange = 0;
         currentBuyVolume  = SELECTED_VOLUME_LONG ;

@@ -18,13 +18,13 @@ void SL_OrderAnchor_Settings(int chosen)
 
 void SL_STR_Anchor_101()
 {
-    Level_sl_long = Level_Buy; 
-    Level_sl_short = Level_Sell;
+    Level_sl_long = CurrentLevelBuy; 
+    Level_sl_short = CurrentLevelSell;
 }
 void SL_STR_Anchor_201()
 {
-    Level_sl_long = Level_Buy; 
-    Level_sl_short = Level_Sell;
+    Level_sl_long = CurrentLevelBuy; 
+    Level_sl_short = CurrentLevelSell;
 }
 
 //+------------------------------------------------------------------+

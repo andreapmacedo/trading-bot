@@ -44,7 +44,7 @@ void SisSettings_01_ch0001()
         //if(SERVER_SYMBOL_BID > (Freeze_Central_Top + SELECTED_EN_DISTANCE_LONG))
         // if(spd > SELECTED_EN_DISTANCE_LONG)
         // {
-        //     Level_Buy = SERVER_SYMBOL_BID;
+        //     CurrentLevelBuy = SERVER_SYMBOL_BID;
         // }
         //currentBuyVolume = SELECTED_VOLUME_LONG * 2;
         BuyVolChange += SELECTED_VOLUME_LONG ;
@@ -54,7 +54,7 @@ void SisSettings_01_ch0001()
         //currentSellVolume = SELECTED_VOLUME_SHORT * 2;
         SellVolChange += SELECTED_VOLUME_SHORT ;
         //if(SERVER_SYMBOL_ASK < ( Freeze_Central_Bottom- SELECTED_EN_DISTANCE_SHORT))
-            //Level_Sell = SERVER_SYMBOL_ASK;
+            //CurrentLevelSell = SERVER_SYMBOL_ASK;
         // if(spd > SELECTED_EN_DISTANCE_SHORT)
         // {
         // }                

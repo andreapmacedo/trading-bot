@@ -25,7 +25,7 @@ void SisSettings_03_ch0001()
     {
         // if(Current_Buy_Seq > 0)
             currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-        //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+        //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
         
         //SellVolChange  += SELECTED_VOLUME_SHORT;
         //BottomChange = 0;
@@ -41,7 +41,7 @@ void SisSettings_03_ch0001()
         //  if(Current_Sell_Seq > 0)
             currentBuyVolume = SELECTED_VOLUME_LONG * 2;
         
-        //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+        //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
         //BuyVolChange  += SELECTED_VOLUME_LONG;
         // TopChange += 50;
     }
@@ -62,7 +62,7 @@ void SisSettings_03_ch0002()
         //SetTopMagneticMovie_Pro(); // (est 2x)
         // if(Current_Buy_Seq > 0)
             currentSellVolume = SELECTED_VOLUME_SHORT * 2;
-        //Level_Sell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
+        //CurrentLevelSell = (Freeze_Central_Top - SELECTED_EN_DISTANCE_SHORT);
         
         //SellVolChange  += SELECTED_VOLUME_SHORT;
         //BottomChange = 0;
@@ -79,7 +79,7 @@ void SisSettings_03_ch0002()
         //  if(Current_Sell_Seq > 0)
             currentBuyVolume = SELECTED_VOLUME_LONG * 2;
         
-        //Level_Buy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
+        //CurrentLevelBuy =  (Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG);
         //BuyVolChange  += SELECTED_VOLUME_LONG;
         // TopChange += 50;
     }

@@ -5,12 +5,12 @@ void SO_Trading_Floor_Reset_Vars()
     BUY_TREND_OK = true;
     BREAK_MODE = false;
     //-- os parâmetros mutáveis
-    TopChange = 0; // Pode ser dispensável seu uso e manipular diretamente a variável Level_Buy/Level_Sell como acontece com o TP/SL mas esta opção permite acompanhar no painel a variação da mudança 
+    TopChange = 0; // Pode ser dispensável seu uso e manipular diretamente a variável CurrentLevelBuy/CurrentLevelSell como acontece com o TP/SL mas esta opção permite acompanhar no painel a variação da mudança 
     BottomChange = 0;
 
     //-- Parâmetros Naturais do SO
-    Level_Buy = PriceInfo[1].low;
-    Level_Sell = PriceInfo[1].high;
+    CurrentLevelBuy = PriceInfo[1].low;
+    CurrentLevelSell = PriceInfo[1].high;
     // TopChange +=  EN_Distance_Short;
     // BottomChange += EN_Distance_Long;
 
@@ -61,8 +61,8 @@ void SO_Trading_Floor_Reset_Vars()
     
             if(SELECTED_TP_ON)
             {
-                Level_tp_long = Level_Buy;// PriceInfo[1].low // será atribuído pelo anchor
-                Level_tp_short = Level_Sell;
+                Level_tp_long = CurrentLevelBuy;// PriceInfo[1].low // será atribuído pelo anchor
+                Level_tp_short = CurrentLevelSell;
                 TP_OrderAnchor_Settings(INPUT_TP_EST_ANCHOR_CHOSEN);
                 TP_OrderDistance_Settings(INPUT_TP_EST_DISTANCE_CHOSEN);
             }
@@ -76,8 +76,8 @@ void SO_Trading_Floor_Reset_Vars()
             //_____________________________
             if(SELECTED_SL_ON)
             {
-                Level_sl_long = Level_Buy;// PriceInfo[1].low // será atribuído pelo anchor
-                Level_sl_short = Level_Sell;
+                Level_sl_long = CurrentLevelBuy;// PriceInfo[1].low // será atribuído pelo anchor
+                Level_sl_short = CurrentLevelSell;
                 SL_OrderAnchor_Settings(INPUT_SL_EST_ANCHOR_CHOSEN);
                 SL_OrderDistance_Settings(INPUT_SL_EST_DISTANCE_CHOSEN);
             }
@@ -148,12 +148,12 @@ void SO_Trading_Floor_Reset_Vars()
     //_____________________________
     
     //-- os parâmetros mutáveis
-    TopChange = 0; // Pode ser dispensável seu uso e manipular diretamente a variável Level_Buy/Level_Sell como acontece com o TP/SL mas esta opção permite acompanhar no painel a variação da mudança 
+    TopChange = 0; // Pode ser dispensável seu uso e manipular diretamente a variável CurrentLevelBuy/CurrentLevelSell como acontece com o TP/SL mas esta opção permite acompanhar no painel a variação da mudança 
     BottomChange = 0;
 
     //-- Parâmetros Naturais do SO
-    Level_Buy = PriceInfo[1].low;
-    Level_Sell = PriceInfo[1].high;
+    CurrentLevelBuy = PriceInfo[1].low;
+    CurrentLevelSell = PriceInfo[1].high;
     TopChange +=  EN_Distance_Short;
     BottomChange += EN_Distance_Long;
    
@@ -164,16 +164,16 @@ void SO_Trading_Floor_Reset_Vars()
     EN_OrderAnchor_Settings(INPUT_EN_EST_ANCHOR_CHOSEN); 
     EN_OrderDistance_Settings(INPUT_EN_EST_DISTANCE_CHOSEN); 
   
-    Level_Sell += TopChange;
-    Level_Buy -= BottomChange;
+    CurrentLevelSell += TopChange;
+    CurrentLevelBuy -= BottomChange;
     
     // TP
     //_____________________________
    
     if(SELECTED_TP_ON)
     {
-        Level_tp_long = Level_Buy;// PriceInfo[1].low // será atribuído pelo anchor
-        Level_tp_short = Level_Sell;
+        Level_tp_long = CurrentLevelBuy;// PriceInfo[1].low // será atribuído pelo anchor
+        Level_tp_short = CurrentLevelSell;
         TP_OrderAnchor_Settings(INPUT_TP_EST_ANCHOR_CHOSEN);
         TP_OrderDistance_Settings(INPUT_TP_EST_DISTANCE_CHOSEN);
     }
@@ -187,8 +187,8 @@ void SO_Trading_Floor_Reset_Vars()
     //_____________________________
     if(SELECTED_SL_ON)
     {
-        Level_sl_long = Level_Buy;// PriceInfo[1].low // será atribuído pelo anchor
-        Level_sl_short = Level_Sell;
+        Level_sl_long = CurrentLevelBuy;// PriceInfo[1].low // será atribuído pelo anchor
+        Level_sl_short = CurrentLevelSell;
         SL_OrderAnchor_Settings(INPUT_SL_EST_ANCHOR_CHOSEN);
         SL_OrderDistance_Settings(INPUT_SL_EST_DISTANCE_CHOSEN);
     }

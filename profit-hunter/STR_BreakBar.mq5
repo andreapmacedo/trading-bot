@@ -2,13 +2,13 @@
 int ORD_Strategy_200()
 {
     BREAK_MODE = true;
-    Level_Buy = PriceInfo[1].high;
-    Level_Sell = PriceInfo[1].low;
+    CurrentLevelBuy = PriceInfo[1].high;
+    CurrentLevelSell = PriceInfo[1].low;
     TopChange -=  50;
     BottomChange -= 50;
     
-    Level_Sell += TopChange;
-    Level_Buy -= BottomChange;   
+    CurrentLevelSell += TopChange;
+    CurrentLevelBuy -= BottomChange;   
 
 
 
@@ -36,12 +36,12 @@ int ORD_Strategy_201()
     EN_STR_Anchor_201();
     EN_STR_Distance_2();
 
-    Level_Sell += TopChange;
-    Level_Buy -= BottomChange;   
+    CurrentLevelSell += TopChange;
+    CurrentLevelBuy -= BottomChange;   
 
 
-    //Level_Buy = PriceInfo[1].high;
-    //Level_Sell = PriceInfo[1].low;
+    //CurrentLevelBuy = PriceInfo[1].high;
+    //CurrentLevelSell = PriceInfo[1].low;
     
     // TopChange -=  50;
     // BottomChange -= 50;

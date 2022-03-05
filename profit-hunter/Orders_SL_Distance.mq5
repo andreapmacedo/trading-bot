@@ -43,24 +43,24 @@ void CheckValidity_SL()
 {
     if(!BREAK_MODE)
     {
-        if(Level_sl_long > Level_Buy)
+        if(Level_sl_long > CurrentLevelBuy)
         {
             Level_sl_long = NULL; 
             
         }
-        if(Level_sl_short < Level_Sell)
+        if(Level_sl_short < CurrentLevelSell)
         {
             Level_sl_short = NULL; 
         }
     }
     else
     {
-        if(Level_sl_long < Level_Buy)
+        if(Level_sl_long < CurrentLevelBuy)
         {
             Level_sl_long = NULL; 
             // Level_sl_short = NULL;
         }     
-        if(Level_sl_short > Level_Sell)
+        if(Level_sl_short > CurrentLevelSell)
         {
             Level_sl_short = NULL; 
         }           

@@ -44,8 +44,8 @@ void Sys_Spread_Reset_Vars()
   SellVolChange = 0;
 
 
-  Level_Sell = SERVER_SYMBOL_ASK + SELECTED_EN_DISTANCE_SHORT;
-  Level_Buy = SERVER_SYMBOL_BID - SELECTED_EN_DISTANCE_LONG;
+  CurrentLevelSell = SERVER_SYMBOL_ASK + SELECTED_EN_DISTANCE_SHORT;
+  CurrentLevelBuy = SERVER_SYMBOL_BID - SELECTED_EN_DISTANCE_LONG;
   currentBuyVolume  = SELECTED_VOLUME_LONG;
   currentSellVolume  = SELECTED_VOLUME_SHORT ;
 
@@ -149,42 +149,42 @@ int Sys_Spread_v2(int callFrom)
     if(FOLLOW_MODE || temp_vol >= SELECTED_LIMIT_POSITION_VOLUME)
     {
       SetAllFlows(); 
-      Level_Sell = Lowest_Top;
-      Level_Buy = Highest_Bottom;
+      CurrentLevelSell = Lowest_Top;
+      CurrentLevelBuy = Highest_Bottom;
     }
     else
     {
-      Level_Sell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;
-      Level_Buy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;            
+      CurrentLevelSell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;
+      CurrentLevelBuy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;            
     }
     /*
-    Level_Sell = Lowest_Top;
-    Level_Buy = Highest_Bottom;
+    CurrentLevelSell = Lowest_Top;
+    CurrentLevelBuy = Highest_Bottom;
     */
     currentSellVolume = SELECTED_VOLUME_SHORT;
     currentBuyVolume = SELECTED_VOLUME_LONG;
 
-    // Print("Level_Sell -> ", Level_Sell);
+    // Print("CurrentLevelSell -> ", CurrentLevelSell);
     // Print("SERVER_SYMBOL_ASK -> ", SERVER_SYMBOL_ASK);
-    // Print("Level_Buy -> ", Level_Buy);
+    // Print("CurrentLevelBuy -> ", CurrentLevelBuy);
     // Print("SERVER_SYMBOL_BID -> ", SERVER_SYMBOL_BID);
     
     
     // avaliar o impacto deste trecho
-    // if(Level_Sell == SERVER_SYMBOL_ASK)
+    // if(CurrentLevelSell == SERVER_SYMBOL_ASK)
     // {
         
     //     Print("== SERVER_SYMBOL_ASK -> ", SERVER_SYMBOL_ASK);
-    //     Print("Level_Sell == -> ", Level_Sell);
+    //     Print("CurrentLevelSell == -> ", CurrentLevelSell);
     //     //return -1;
-    //     //Level_Sell += SELECTED_EN_DISTANCE_SHORT;
+    //     //CurrentLevelSell += SELECTED_EN_DISTANCE_SHORT;
     // }
-    // if(Level_Buy == SERVER_SYMBOL_BID)
+    // if(CurrentLevelBuy == SERVER_SYMBOL_BID)
     // {
     //     Print("== SERVER_SYMBOL_BID -> ", SERVER_SYMBOL_BID);
-    //     Print("== Level_Buy -> ", Level_Buy);
+    //     Print("== CurrentLevelBuy -> ", CurrentLevelBuy);
     //     //return -1;
-    //     //Level_Buy -= SELECTED_EN_DISTANCE_LONG;
+    //     //CurrentLevelBuy -= SELECTED_EN_DISTANCE_LONG;
     // }
 
 
@@ -197,19 +197,19 @@ int Sys_Spread_v2(int callFrom)
       if(pos_status == 0) // 0 = comprado
       {
           
-        Level_Buy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;      
+        CurrentLevelBuy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;      
 
         if(TotalSymbolOrderBuy == 0) // só chama o spd se não tiver mais ordem a ser exec. do lado que vai sofrer o stop
         {
             SetSpdReverse3();
         }
 
-        // if(SERVER_SYMBOL_BID > Level_Sell)
+        // if(SERVER_SYMBOL_BID > CurrentLevelSell)
         // {
         //     Print("call from 4 ENFORCE");
         //     ResetAxlesLevels();
         //     CountFreezeCentralLevel == 0;
-        //     Print("Enforce Reset Level_Sell: ", Level_Sell);                
+        //     Print("Enforce Reset CurrentLevelSell: ", CurrentLevelSell);                
         //     return -1;
         // }
 
@@ -217,19 +217,19 @@ int Sys_Spread_v2(int callFrom)
       }
       else
       {
-        Level_Sell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;       
+        CurrentLevelSell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;       
 
         if(TotalSymbolOrderSell == 0)
         {
             SetSpdReverse3();
         }
 
-        // if(SERVER_SYMBOL_ASK < Level_Buy)
+        // if(SERVER_SYMBOL_ASK < CurrentLevelBuy)
         // {
         //     Print("call from 4 ENFORCE");
         //     ResetAxlesLevels();
         //     CountFreezeCentralLevel == 0;
-        //     Print("Enforce Reset Level_Buy: ", Level_Buy);       
+        //     Print("Enforce Reset CurrentLevelBuy: ", CurrentLevelBuy);       
         //     return -1;
         // }
 
@@ -275,8 +275,8 @@ int Sys_Spread_v2(int callFrom)
       SellVolChange = SELECTED_TOTAL_VOL_VALUE_LIMIT_CHANGE;
     
     
-    Level_Sell += TopChange;
-    Level_Buy -= BottomChange;
+    CurrentLevelSell += TopChange;
+    CurrentLevelBuy -= BottomChange;
 
     currentBuyVolume += BuyVolChange;
     currentSellVolume += SellVolChange;
@@ -367,21 +367,21 @@ int Sys_Spread_v2(int callFrom)
     //if(pos_volume < SELECTED_LIMIT_POSITION_VOLUME)
     if(temp_vol < SELECTED_LIMIT_POSITION_VOLUME)
     {
-        if(SERVER_SYMBOL_BID > Level_Sell)
+        if(SERVER_SYMBOL_BID > CurrentLevelSell)
         {
             Print("call from 100 ENFORCE");
             ResetAxlesLevels();
             CountFreezeCentralLevel == 0;
 
-            Print("Enforce Reset Level_Sell: ", Level_Sell);                
+            Print("Enforce Reset CurrentLevelSell: ", CurrentLevelSell);                
             return -1;
         }
-        if(SERVER_SYMBOL_ASK < Level_Buy)
+        if(SERVER_SYMBOL_ASK < CurrentLevelBuy)
         {
             Print("call from 100 ENFORCE");
             ResetAxlesLevels();
             CountFreezeCentralLevel == 0;
-            Print("Enforce Reset Level_Buy: ", Level_Buy);       
+            Print("Enforce Reset CurrentLevelBuy: ", CurrentLevelBuy);       
             return -1;
         }
     }
@@ -567,42 +567,42 @@ int Sys_Spread_v1(int callFrom)
         if(FOLLOW_MODE || temp_vol >= SELECTED_LIMIT_POSITION_VOLUME)
         {
             SetAllFlows(); 
-            Level_Sell = Lowest_Top;
-            Level_Buy = Highest_Bottom;
+            CurrentLevelSell = Lowest_Top;
+            CurrentLevelBuy = Highest_Bottom;
         }
         else
         {
-            Level_Sell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;
-            Level_Buy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;            
+            CurrentLevelSell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;
+            CurrentLevelBuy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;            
         }
         /*
-        Level_Sell = Lowest_Top;
-        Level_Buy = Highest_Bottom;
+        CurrentLevelSell = Lowest_Top;
+        CurrentLevelBuy = Highest_Bottom;
         */
         currentSellVolume = SELECTED_VOLUME_SHORT;
         currentBuyVolume = SELECTED_VOLUME_LONG;
 
-        // Print("Level_Sell -> ", Level_Sell);
+        // Print("CurrentLevelSell -> ", CurrentLevelSell);
         // Print("SERVER_SYMBOL_ASK -> ", SERVER_SYMBOL_ASK);
-        // Print("Level_Buy -> ", Level_Buy);
+        // Print("CurrentLevelBuy -> ", CurrentLevelBuy);
         // Print("SERVER_SYMBOL_BID -> ", SERVER_SYMBOL_BID);
         
         
         // avaliar o impacto deste trecho
-        // if(Level_Sell == SERVER_SYMBOL_ASK)
+        // if(CurrentLevelSell == SERVER_SYMBOL_ASK)
         // {
             
         //     Print("== SERVER_SYMBOL_ASK -> ", SERVER_SYMBOL_ASK);
-        //     Print("Level_Sell == -> ", Level_Sell);
+        //     Print("CurrentLevelSell == -> ", CurrentLevelSell);
         //     //return -1;
-        //     //Level_Sell += SELECTED_EN_DISTANCE_SHORT;
+        //     //CurrentLevelSell += SELECTED_EN_DISTANCE_SHORT;
         // }
-        // if(Level_Buy == SERVER_SYMBOL_BID)
+        // if(CurrentLevelBuy == SERVER_SYMBOL_BID)
         // {
         //     Print("== SERVER_SYMBOL_BID -> ", SERVER_SYMBOL_BID);
-        //     Print("== Level_Buy -> ", Level_Buy);
+        //     Print("== CurrentLevelBuy -> ", CurrentLevelBuy);
         //     //return -1;
-        //     //Level_Buy -= SELECTED_EN_DISTANCE_LONG;
+        //     //CurrentLevelBuy -= SELECTED_EN_DISTANCE_LONG;
         // }
 
 
@@ -615,19 +615,19 @@ int Sys_Spread_v1(int callFrom)
             if(pos_status == 0) // 0 = comprado
             {
                 
-                Level_Buy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;      
+                CurrentLevelBuy = Freeze_Central_Bottom - SELECTED_EN_DISTANCE_LONG;      
 
                 if(TotalSymbolOrderBuy == 0) // só chama o spd se não tiver mais ordem a ser exec. do lado que vai sofrer o stop
                 {
                     SetSpdReverse3();
                 }
 
-                // if(SERVER_SYMBOL_BID > Level_Sell)
+                // if(SERVER_SYMBOL_BID > CurrentLevelSell)
                 // {
                 //     Print("call from 4 ENFORCE");
                 //     ResetAxlesLevels();
                 //     CountFreezeCentralLevel == 0;
-                //     Print("Enforce Reset Level_Sell: ", Level_Sell);                
+                //     Print("Enforce Reset CurrentLevelSell: ", CurrentLevelSell);                
                 //     return -1;
                 // }
 
@@ -635,19 +635,19 @@ int Sys_Spread_v1(int callFrom)
             }
             else
             {
-                Level_Sell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;       
+                CurrentLevelSell = Freeze_Central_Top + SELECTED_EN_DISTANCE_SHORT;       
 
                 if(TotalSymbolOrderSell == 0)
                 {
                     SetSpdReverse3();
                 }
 
-                // if(SERVER_SYMBOL_ASK < Level_Buy)
+                // if(SERVER_SYMBOL_ASK < CurrentLevelBuy)
                 // {
                 //     Print("call from 4 ENFORCE");
                 //     ResetAxlesLevels();
                 //     CountFreezeCentralLevel == 0;
-                //     Print("Enforce Reset Level_Buy: ", Level_Buy);       
+                //     Print("Enforce Reset CurrentLevelBuy: ", CurrentLevelBuy);       
                 //     return -1;
                 // }
 
@@ -693,8 +693,8 @@ int Sys_Spread_v1(int callFrom)
             SellVolChange = SELECTED_TOTAL_VOL_VALUE_LIMIT_CHANGE;
         
         
-        Level_Sell += TopChange;
-        Level_Buy -= BottomChange;
+        CurrentLevelSell += TopChange;
+        CurrentLevelBuy -= BottomChange;
 
         currentBuyVolume += BuyVolChange;
         currentSellVolume += SellVolChange;
@@ -785,21 +785,21 @@ int Sys_Spread_v1(int callFrom)
         //if(pos_volume < SELECTED_LIMIT_POSITION_VOLUME)
         if(temp_vol < SELECTED_LIMIT_POSITION_VOLUME)
         {
-            if(SERVER_SYMBOL_BID > Level_Sell)
+            if(SERVER_SYMBOL_BID > CurrentLevelSell)
             {
                 Print("call from 100 ENFORCE");
                 ResetAxlesLevels();
                 CountFreezeCentralLevel == 0;
 
-                Print("Enforce Reset Level_Sell: ", Level_Sell);                
+                Print("Enforce Reset CurrentLevelSell: ", CurrentLevelSell);                
                 return -1;
             }
-            if(SERVER_SYMBOL_ASK < Level_Buy)
+            if(SERVER_SYMBOL_ASK < CurrentLevelBuy)
             {
                 Print("call from 100 ENFORCE");
                 ResetAxlesLevels();
                 CountFreezeCentralLevel == 0;
-                Print("Enforce Reset Level_Buy: ", Level_Buy);       
+                Print("Enforce Reset CurrentLevelBuy: ", CurrentLevelBuy);       
                 return -1;
             }
         }

@@ -357,21 +357,21 @@ void SetAddChange_Evo()
 	
 	if(last_deal_ref == 0/* && (SELECTED_LIMIT_POSITION_VOLUME - pos_volume) > 0*/)
 	{
-		Print("Add Level_Buy before = ", Level_Buy);
-		if(Level_Buy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_BUY > 0*/)
+		Print("Add CurrentLevelBuy before = ", CurrentLevelBuy);
+		if(CurrentLevelBuy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_BUY > 0*/)
 		{
-			Level_Buy = Check_EN_Long_Distance;
-			Print("Add Level_Buy changed = ", Level_Buy);
+			CurrentLevelBuy = Check_EN_Long_Distance;
+			Print("Add CurrentLevelBuy changed = ", CurrentLevelBuy);
 		}	
 	}
 
 	if(last_deal_ref == 1/*  && (SELECTED_LIMIT_POSITION_VOLUME - pos_volume) > 0*/)
 	{
-		Print("Add Level_Sell before = ", Level_Sell);
-		if(Level_Sell < Check_EN_Short_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
+		Print("Add CurrentLevelSell before = ", CurrentLevelSell);
+		if(CurrentLevelSell < Check_EN_Short_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
 		{
-			Level_Sell = Check_EN_Short_Distance;
-			Print("Add Level_Sell changed = ", Level_Sell);
+			CurrentLevelSell = Check_EN_Short_Distance;
+			Print("Add CurrentLevelSell changed = ", CurrentLevelSell);
 		}			
 	}
 	
@@ -400,21 +400,21 @@ void SetAddChange_Evo_CPRICE()
 	
 	if(last_deal_ref == 0/* && (SELECTED_LIMIT_POSITION_VOLUME - pos_volume) > 0*/)
 	{
-		Print("Add Level_Buy before = ", Level_Buy);
-		if(Level_Buy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_BUY > 0*/)
+		Print("Add CurrentLevelBuy before = ", CurrentLevelBuy);
+		if(CurrentLevelBuy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_BUY > 0*/)
 		{
-			Level_Buy = Check_EN_Long_Distance;
-			Print("Add Level_Buy changed = ", Level_Buy);
+			CurrentLevelBuy = Check_EN_Long_Distance;
+			Print("Add CurrentLevelBuy changed = ", CurrentLevelBuy);
 		}	
 	}
 
 	if(last_deal_ref == 1/*  && (SELECTED_LIMIT_POSITION_VOLUME - pos_volume) > 0*/)
 	{
-		Print("Add Level_Sell before = ", Level_Sell);
-		if(Level_Sell < Check_EN_Short_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
+		Print("Add CurrentLevelSell before = ", CurrentLevelSell);
+		if(CurrentLevelSell < Check_EN_Short_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
 		{
-			Level_Sell = Check_EN_Short_Distance;
-			Print("Add Level_Sell changed = ", Level_Sell);
+			CurrentLevelSell = Check_EN_Short_Distance;
+			Print("Add CurrentLevelSell changed = ", CurrentLevelSell);
 		}			
 	}
 	
@@ -447,20 +447,20 @@ void SetRdcChange_Evo()
 	{
 
 			//comprei a proxima venda tem que ser x acima da ultima compra
-		Print("Rdc Level_Sell before = ", Level_Sell);
-		if(Level_Sell < Check_EN_Short_Distance && DYT_SYMBOL_LAST_BUY > 0)
+		Print("Rdc CurrentLevelSell before = ", CurrentLevelSell);
+		if(CurrentLevelSell < Check_EN_Short_Distance && DYT_SYMBOL_LAST_BUY > 0)
 		{
-			Level_Sell = Check_EN_Short_Distance;
-			Print("Rdc Level_Sell changed = ", Level_Sell);
+			CurrentLevelSell = Check_EN_Short_Distance;
+			Print("Rdc CurrentLevelSell changed = ", CurrentLevelSell);
 		}	
 	}
 	if(last_deal_ref == 1  /*&& (SELECTED_LIMIT_POSITION_VOLUME - PositionGetDouble(POSITION_VOLUME)) > 0*/)
 	{
-		Print("Rdc Level_Buy before = ", Level_Buy);
-		if(Level_Buy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
+		Print("Rdc CurrentLevelBuy before = ", CurrentLevelBuy);
+		if(CurrentLevelBuy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
 		{
-			Level_Buy = Check_EN_Long_Distance;
-			Print("Rdc Level_Buy changed = ", Level_Buy);
+			CurrentLevelBuy = Check_EN_Long_Distance;
+			Print("Rdc CurrentLevelBuy changed = ", CurrentLevelBuy);
 		}			
 	}
 }
@@ -498,21 +498,21 @@ void SetRdcChange_Evo_CPRICE()
 	{
 
 			//comprei a proxima venda tem que ser x acima da ultima compra
-		Print("Rdc Level_Sell before = ", Level_Sell);
-		if(Level_Sell < Check_EN_Short_Distance && DYT_SYMBOL_LAST_BUY > 0)
+		Print("Rdc CurrentLevelSell before = ", CurrentLevelSell);
+		if(CurrentLevelSell < Check_EN_Short_Distance && DYT_SYMBOL_LAST_BUY > 0)
 		{
-			Level_Sell = Check_EN_Short_Distance;
-			Print("Rdc Level_Sell changed = ", Level_Sell);
+			CurrentLevelSell = Check_EN_Short_Distance;
+			Print("Rdc CurrentLevelSell changed = ", CurrentLevelSell);
 		}	
 	}
 	if(last_deal_ref == 1)
 	//if(pos_status == 1)
 	{
-		Print("Rdc Level_Buy before = ", Level_Buy);
-		if(Level_Buy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
+		Print("Rdc CurrentLevelBuy before = ", CurrentLevelBuy);
+		if(CurrentLevelBuy > Check_EN_Long_Distance /*&& DYT_SYMBOL_LAST_SELL > 0*/)
 		{
-			Level_Buy = Check_EN_Long_Distance;
-			Print("Rdc Level_Buy changed = ", Level_Buy);
+			CurrentLevelBuy = Check_EN_Long_Distance;
+			Print("Rdc CurrentLevelBuy changed = ", CurrentLevelBuy);
 		}			
 	}
 }
