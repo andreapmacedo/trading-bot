@@ -28,12 +28,6 @@ as chamadas não deverão decorrer em camadas mas deverão obedecer a sequencia
 
 
 
-
-
-
-
-
-
 -- CRIAR ARQUIVO COM AS PRE CONFIGURAÇÕES DE CADA PAPEL PARA SETAR COMO DEF. AO INICIAR
 
 
