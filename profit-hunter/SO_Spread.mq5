@@ -76,15 +76,15 @@ int Sys_Spread_v1(int callFrom){
   if(TRADING_STATUS_CHANGED)
   {
     if(countListening == 1 || countListening == 4) {
-        Print("enforce x");
-        SysSpreadBuild(callFrom);
-        return -10;   
+      Print("callFrom TRADING_STATUS_CHANGED");
+      SysSpreadBuild(callFrom);
+      return -10;   
     }        
   }
 
   //-- A cada novo segundo há uma necessidade de atualização. necessário para o caso de um ativo com baixa liquidez que fica muito tempo sem negócios.
   if(callFrom == 5) {
-    Print("call from 5");
+    // Print("call from 5");
     SysSpreadBuild(callFrom);
     return -10;  
   }
@@ -93,16 +93,16 @@ int Sys_Spread_v1(int callFrom){
   if(callFrom == 3) {
     ResetAxlesLevels();
     CountFreezeCentralLevel == 0;
-    Print("call from 3");
+    // Print("call from 3");
     SysSpreadBuild(callFrom);
     return -10;  
   } else if (TotalSymbolOrderBuy == 0 && SELECTED_LONG_POSITION_ON && !SELECTED_SELL_FIRST && !DYT_SELL_FIRST) {
     if(currentPositionVolume >= SELECTED_LIMIT_POSITION_VOLUME) {
-      Print("call from 2 ENFORCE currentPositionVolume: " + currentPositionVolume);
+      // Print("call from 2 ENFORCE currentPositionVolume: " + currentPositionVolume);
       SysSpreadBuild(callFrom);
       return -10;
     } else if(countListening == 1) {
-      Print("call from 22 ENFORCE");
+      // Print("call from 22 ENFORCE");
       ResetAxlesLevels();
       CountFreezeCentralLevel == 0;
       SysSpreadBuild(callFrom);
@@ -110,11 +110,11 @@ int Sys_Spread_v1(int callFrom){
     }
   } else if(TotalSymbolOrderSell == 0 && SELECTED_SHORT_POSITION_ON && !SELECTED_BUY_FIRST && !DYT_BUY_FIRST) {
     if(currentPositionVolume >= SELECTED_LIMIT_POSITION_VOLUME) {
-      Print("call from 4 ENFORCE");
+      // Print("call from 4 ENFORCE");
       SysSpreadBuild(callFrom);
       return -10;
     } else if(countListening == 1 ) {
-      Print("call from 44 ENFORCE");
+      // Print("call from 44 ENFORCE");
       ResetAxlesLevels();
       CountFreezeCentralLevel == 0;
       SysSpreadBuild(callFrom);
@@ -122,12 +122,12 @@ int Sys_Spread_v1(int callFrom){
     }
   }
   if(FOLLOW_MODE) {
-    Print("FOLLOW_MODE");
+    // Print("FOLLOW_MODE");
     SysSpreadBuild(callFrom);
     return -10;
   }
   if(CurrentStatusSystem == 2) {
-    Print("CurrentStatusSystem == 2");
+    // Print("CurrentStatusSystem == 2");
     SysSpreadBuild(callFrom);
     return -10;
   }
@@ -186,9 +186,16 @@ int SysSpreadBuild(int callFrom){
         SetSpdReverse3();
       }
     }
-  }     
+  } 
+  // Já está sendo chamada do routine    
   // CurrentTrend = Trend_Settings(SELECTED_EST_TREND_CHOSEN); // pode ser chamado do "time" routine para poupar recursos
   // CurrentTradingStatus = Trading_Status(1);
+  Print("CurrentTrend: " + CurrentTrend);
+  // Chamada para estratégias mestras
+  
+
+  
+  
   int masterEstInterResponse = 0;
   if(SELECTED_TRADE_STRATEGY_CHOSEN > 0) {
     masterEstInterResponse = SetOrderStrategy(SELECTED_TRADE_STRATEGY_CHOSEN);
@@ -202,6 +209,19 @@ int SysSpreadBuild(int callFrom){
     return -1;
   }
 
+  // verifica foi escolhida uma estratégia de tendência 
+  if(SELECTED_EST_TREND_CHOSEN > 0){
+    // pode ser ajustado o tamanho mínimo e máximo da posição
+    // temp // estrategia
+    if(CurrentTrend > 0)
+      SELECTED_MINIMUN_POSITION_VOLUME = 1;
+    else if (CurrentTrend < 0)
+    SELECTED_MINIMUN_POSITION_VOLUME = 0;
+    SELECTED_BUY_FIRST = false;
+  }
+
+  //-- Verifica se após as modificações dos ajustes da distancia e volume pelos fatores de tendência e estratégias os parâmetros retornados atendem aos limites de segurança
+  // estabelecidos pelo usuário.
   if(TopChange > SELECTED_TOTAL_DST_VALUE_LIMIT_CHANGE && SELECTED_TOTAL_DST_VALUE_LIMIT_CHANGE > 0)
     TopChange = SELECTED_TOTAL_DST_VALUE_LIMIT_CHANGE;
 
@@ -221,19 +241,16 @@ int SysSpreadBuild(int callFrom){
   currentBuyVolume += BuyVolChange;
   currentSellVolume += SellVolChange;
 
-  if((currentPositionVolume < SELECTED_LIMIT_POSITION_VOLUME))
-  {    
-    if(Freeze_Central_Top > 0 && Freeze_Central_Bottom > 0)
-    {
+  if(currentPositionVolume < SELECTED_LIMIT_POSITION_VOLUME){    
+    if(Freeze_Central_Top > 0 && Freeze_Central_Bottom > 0){
       if(MIN_ADD_DISTANCE > 0)
         SetAddChange_Evo();
       if(MIN_REDUCE_DISTANCE >0)
         SetRdcChange_Evo();
     }
   }  
-
-  if(currentPositionVolume < SELECTED_LIMIT_POSITION_VOLUME)
-  {
+  // Verifica 
+  if(currentPositionVolume < SELECTED_LIMIT_POSITION_VOLUME){
     if(SERVER_SYMBOL_BID > CurrentLevelSell) {
       Print("call from 100 ENFORCE"); // chamada aqui
       ResetAxlesLevels();

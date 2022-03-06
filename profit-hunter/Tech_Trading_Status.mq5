@@ -11,27 +11,22 @@
 #include "Tech_Trading_Status_04.mq5"
 #include "Tech_Trading_Status_05.mq5"
 
-
-
-
 enum enum_Trading_Status
 {
-    eTrading_001                = 1,
-    eTrading_002                = 2   
+  eTrading_001                = 1,
+  eTrading_002                = 2   
 };
-
-
 
 
 int Trading_Status(int chosen)
 {
-    switch(chosen)
-    {
-        case eTrading_001:
-            return EST_Trading_001();
-            break;            
-    }
-    return 0;    
+  switch(chosen)
+  {
+    case eTrading_001:
+      return EST_Trading_001();
+      break;            
+  }
+  return 0;    
 }
 
 
@@ -41,87 +36,87 @@ bool TRADING_STATUS_CHANGED = false;
 
 int EST_Trading_001()
 {
-    int result = 0;
-    if(pos_volume > 0)
+  int result = 0;
+  if(pos_volume > 0)
+  {
+    if(// subindo e comprado
+      CurrentTrend == 1
+      && pos_status == 0 
+      )
     {
-        if(// subindo e comprado
-            CurrentTrend == 1
-            && pos_status == 0 
-            )
-        {
-            result = 1;// CurrentTradingStatus = 1;
-        }
-        else if(// subindo e vendido
-            CurrentTrend ==  1
-            && pos_status == 1 
-            )
-        {
-            result = 2; //CurrentTradingStatus = 2;
-        }
-        else if(// caindo e comprado
-            CurrentTrend == -1 
-            && pos_status == 0
-            )
-        {
-            result = 3; //CurrentTradingStatus = 3;
-
-        }
-        else if(// caindo e vendido
-            CurrentTrend == -1 
-            && pos_status == 1
-            ) 
-        {
-            result = 4; //CurrentTradingStatus = 4;
-        }
-        else if(// neutro e comprado
-            CurrentTrend == 0 
-            && pos_status == 0
-            ) 
-        {
-            result = 7; //CurrentTradingStatus = 7;
-        }
-        else if(// neutro e vendido
-            CurrentTrend == 0 
-            && pos_status == 1
-            ) 
-        {
-            result = 8; //CurrentTradingStatus = 8;
-        }
+        result = 1;// CurrentTradingStatus = 1;
     }
-    else if(CurrentTrend == 1) // zerado e subindo
+    else if(// subindo e vendido
+      CurrentTrend ==  1
+      && pos_status == 1 
+      )
     {
-        result = 5; //return 5;
+      result = 2; //CurrentTradingStatus = 2;
     }
-    else if(CurrentTrend == -1) // zerado e caindo
+    else if(// caindo e comprado
+      CurrentTrend == -1 
+      && pos_status == 0
+      )
     {
-        result = 6;//return 6;
+      result = 3; //CurrentTradingStatus = 3;
+
     }
-    else // zerado e neutro
+    else if(// caindo e vendido
+      CurrentTrend == -1 
+      && pos_status == 1
+      ) 
     {
-        result = 9;// 
+      result = 4; //CurrentTradingStatus = 4;
     }
-
-    LAST_TRADING_STATUS = CurrentTradingStatus;
-    CurrentTradingStatus = result;
-
-
-    if(LAST_TRADING_STATUS != CurrentTradingStatus)
+    else if(// neutro e comprado
+      CurrentTrend == 0 
+      && pos_status == 0
+      ) 
     {
-        // Print("CurrentTradingStatus: ", CurrentTradingStatus);
-        // Print("LAST_TRADING_STATUS: ", LAST_TRADING_STATUS);
-        TRADING_STATUS_CHANGED = true;
+      result = 7; //CurrentTradingStatus = 7;
     }
-    else
+    else if(// neutro e vendido
+      CurrentTrend == 0 
+      && pos_status == 1
+      ) 
     {
-        TRADING_STATUS_CHANGED = false;
+      result = 8; //CurrentTradingStatus = 8;
     }
+  }
+  else if(CurrentTrend == 1) // zerado e subindo
+  {
+    result = 5; //return 5;
+  }
+  else if(CurrentTrend == -1) // zerado e caindo
+  {
+    result = 6;//return 6;
+  }
+  else // zerado e neutro
+  {
+    result = 9;// 
+  }
+
+  LAST_TRADING_STATUS = CurrentTradingStatus;
+  CurrentTradingStatus = result;
 
 
-    // Print("result: ", result);
-    // Print("pos_status: ", pos_status);
+  if(LAST_TRADING_STATUS != CurrentTradingStatus)
+  {
+    // Print("CurrentTradingStatus: ", CurrentTradingStatus);
+    // Print("LAST_TRADING_STATUS: ", LAST_TRADING_STATUS);
+    TRADING_STATUS_CHANGED = true;
+  }
+  else
+  {
+    TRADING_STATUS_CHANGED = false;
+  }
 
-    Basic_Status_System();
-    return result;
+
+  // Print("result: ", result);
+  // Print("pos_status: ", pos_status);
+
+  Basic_Status_System();
+  return result;
 }
 
 int LAST_STATUS_SYSTEM = 0;
@@ -131,55 +126,55 @@ bool STATUS_SYSTEM_CHANGED = false;
 //int Basic_Trend_System() // criar lá no trend
 int Basic_Status_System()
 {
-    int result;
-    switch(CurrentTradingStatus)
-    {
-        case 1:
-            result = 1; // a favor da tendência
-            break;
-        case 4:
-            result = 1;
-            break;
-        case 2:
-            result = 2; // contra a tendência
-            break;
-        case 3:
-            result = 2;
-            break;
-        case 7:
-            result = 3; // contra a tendência na zona de transição
-            break;
-        case 8:
-            result = 3;
-            break;
-        case 5:
-            result = 4; // não posicionado e tendência
-            break;
-        case 6:
-            result = 4;
-            break;
-        default:
-            result = 5; // não posicionado e zona de transição
-            break;
-    }
+  int result;
+  switch(CurrentTradingStatus)
+  {
+    case 1:
+      result = 1; // a favor da tendência
+      break;
+    case 4:
+      result = 1;
+      break;
+    case 2:
+      result = 2; // contra a tendência
+      break;
+    case 3:
+      result = 2;
+      break;
+    case 7:
+      result = 3; // contra a tendência na zona de transição
+      break;
+    case 8:
+      result = 3;
+      break;
+    case 5:
+      result = 4; // não posicionado e tendência
+      break;
+    case 6:
+      result = 4;
+      break;
+    default:
+      result = 5; // não posicionado e zona de transição
+      break;
+  }
 
 
-    LAST_STATUS_SYSTEM = CurrentStatusSystem;
-    CurrentStatusSystem = result;
+  LAST_STATUS_SYSTEM = CurrentStatusSystem;
+  CurrentStatusSystem = result;
 
 
-    if(LAST_STATUS_SYSTEM != CurrentStatusSystem)
-    {
-        // Print("CurrentTradingStatus: ", CurrentTradingStatus);
-        // Print("LAST_TRADING_STATUS: ", LAST_TRADING_STATUS);
-        STATUS_SYSTEM_CHANGED = true;
-    }
-    else
-    {
-        STATUS_SYSTEM_CHANGED = false;
-    }
+  if(LAST_STATUS_SYSTEM != CurrentStatusSystem)
+  {
+    // Print("CurrentTradingStatus: ", CurrentTradingStatus);
+    // Print("LAST_TRADING_STATUS: ", LAST_TRADING_STATUS);
+    STATUS_SYSTEM_CHANGED = true;
+  }
+  else
+  {
+    STATUS_SYSTEM_CHANGED = false;
+  }
 
-    return result;
+  return result;
 }
 /*
 void SetSisSettings_01()

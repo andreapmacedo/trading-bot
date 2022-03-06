@@ -13,15 +13,17 @@ enum enum_Trend
 
 int Trend_Settings(int chosen)
 {
-    switch(chosen)
-    {
-        case eTrend_001:
-            return Set_Est_Trend__01();
-            break;
-    }  
+  switch(chosen)
+  {
+    case 1:
+      return Set_Est_Trend__01();
+      break;
+    default:
+      Print("No trend seted");
+      break;
+  }  
   return 0;
 }
-
 
 double selected_ma_ref = 0; 
 input double MaSpreadActivator = 50; // PARÂMETRO TÉCNICO - Tolerância de Spread da Média - (Valor)
@@ -30,8 +32,6 @@ double madst = 0;
 double top_ma_spread = 0;
 double bottom_ma_spread = 0;
 
-
-
 int LAST_TREND = 0;
 int LAST_TREND_SIDE = 0;
 bool TREND_CHANGED = false;
@@ -39,8 +39,8 @@ bool TREND_SIDE_CHANGED = false;
 int count_tend_change = 0;
 double level_increment = 0;
 
-int Set_Est_Trend__01()
-{
+int Set_Est_Trend__01(){
+  // Print("");
 
   // if(LAST_TREND != CurrentTrend)
   // {
@@ -64,34 +64,20 @@ int Set_Est_Trend__01()
   // LAST_TREND = CurrentTrend;
 
   int result = 0;
-
-  
   Set_MA_Period();
-
   //double selected_ma_fast = Get_MA(MainMaPeriod, MA_FAST_SHIFT,  MODE_EMA, 0); //(período, deslocamento, tipo de suavisação, tipo de preço, "barra")       
   double selected_ma_fast = Get_MA_TF(MainMaPeriod, MA_Period, MA_FAST_SHIFT,  MODE_EMA, 0); //(período, deslocamento, tipo de suavisação, tipo de preço, "barra")       
-  
-  
-//  selected_ma_ref = selected_ma_fast;
+  //  selected_ma_ref = selected_ma_fast;
   //double previous_selected_ma_fast = Get_MA(MainMaPeriod, MA_FAST_SHIFT,  MODE_EMA, 1); //(período, deslocamento, tipo de suavisação, tipo de preço, "barra")       
   double previous_selected_ma_fast = Get_MA_TF(MainMaPeriod, MA_Period, MA_FAST_SHIFT,  MODE_EMA, 1); //(período, deslocamento, tipo de suavisação, tipo de preço, "barra")       
-  
   madst = selected_ma_fast - previous_selected_ma_fast;
-
-
- 
   // Print("madst: ", madst);
   // Print("level_increment: ", level_increment );
-  
   // if(Freeze_Central_Top > 0 && Freeze_Central_Bottom > 0)
   // {
   //   top_ma_spread = (Freeze_Central_Top - selected_ma_ref);
   //   bottom_ma_spread = (selected_ma_ref - Freeze_Central_Bottom);
   // }
-
-
-
- 
   if(
       //previous_selected_ma_fast < selected_ma_fast
       //madst > (SERVER_SYMBOL_TRADE_TICK_SIZE * 1)
@@ -173,14 +159,9 @@ int Set_Est_Trend__01()
     TREND_CHANGED = false;
     TREND_SIDE_CHANGED = false;
   } 
-
-
-
   previous_selected_ma_fast = selected_ma_fast;
-
   return result;
 }
-
 
 int Set_Est_Trend__02()
 {
@@ -233,9 +214,6 @@ int Set_Est_Trend__02()
   previous_selected_ma_fast = selected_ma_fast;
   return 0;
 }
-
-
-
 
 void Set_Est_Trend__Cross_MA_02(int &trend)
 {
@@ -294,7 +272,6 @@ void Set_Est_Trend__Cross_MA(int &trend)
   TREND = trend;
     
 }
-
 
 void Set_Est_Trend__MidLevel(int &trend)
 {

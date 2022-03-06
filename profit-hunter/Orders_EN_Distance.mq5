@@ -66,12 +66,9 @@ void EN_STR_Distance_2()
 //+------------------------------------------------------------------+
 // Distância por sequência
 //+------------------------------------------------------------------+
-
-
-
 void EstENOrerDst_10() 
 {
-    Print("Chamou a 10");
+    // Print("Chamou a 10");
     double adj_end_seq;
     SetAdjDstSeqEnd(adj_end_seq);
     
