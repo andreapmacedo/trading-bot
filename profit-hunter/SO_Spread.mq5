@@ -202,6 +202,7 @@ int SysSpreadBuild(int callFrom){
   }
   
   // ou o master strategy está inoperante ou a estratégia não implicou a mudança de level ou volume
+  // a estratégia méstra ignora todos os paços pre estabeleciod na montagem da estratégia.
   if(masterEstInterResponse == 0) {
     EN_OrderDistance_Settings(SELECTED_EST_EN_DISTANCE_CHOSEN);
     EN_OrderVolume_Settings(SELECTED_EST_VOLUME_CHOSEN);
@@ -209,16 +210,17 @@ int SysSpreadBuild(int callFrom){
     return -1;
   }
 
+  // Estratégia de hacking (ela tem capacidade de burlar alguns parametros estabelecidos pelo usuário de acordo com sinais, tendencia, etc... dentro de uma estratégia específica)
   // verifica foi escolhida uma estratégia de tendência 
+  Print("antes " + SELECTED_MINIMUN_POSITION_VOLUME);
   if(SELECTED_EST_TREND_CHOSEN > 0){
     // pode ser ajustado o tamanho mínimo e máximo da posição
     // temp // estrategia
-    if(CurrentTrend > 0)
-      SELECTED_MINIMUN_POSITION_VOLUME = 1;
-    else if (CurrentTrend < 0)
-    SELECTED_MINIMUN_POSITION_VOLUME = 0;
-    SELECTED_BUY_FIRST = false;
+    if (SELECTED_HACKING_STRATEGY_CHOSEN > 0){
+      setHacking(SELECTED_HACKING_STRATEGY_CHOSEN);
+    }
   }
+  Print("depois " + SELECTED_MINIMUN_POSITION_VOLUME);
 
   //-- Verifica se após as modificações dos ajustes da distancia e volume pelos fatores de tendência e estratégias os parâmetros retornados atendem aos limites de segurança
   // estabelecidos pelo usuário.

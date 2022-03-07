@@ -39,6 +39,7 @@
 #include "Tech_Moving_Status.mq5"
 #include "Tech_Trading_Status.mq5"
 #include "Tech_Trigger_Signal.mq5"
+#include "Tech_Hacking.mq5"
 #include "Deal.mq5"
 #include "Routines.mq5"
 #include "Deals_Management.mq5"

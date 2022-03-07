@@ -454,8 +454,8 @@ void Set_Order_Limit(int callFrom)
   double currentPositionVolume;
   GetCurrentPositionVolume(currentPositionVolume);
 
-
-  if(currentPositionVolume > SELECTED_MINIMUN_POSITION_VOLUME){
+    Print("currentPositionVolume " + currentPositionVolume);
+//   if(currentPositionVolume > SELECTED_MINIMUN_POSITION_VOLUME){
     if(CurrentLevelSell != Last_CurrentLevelSell && SELL_TREND_OK)
     {
       Set_Order_Sell_Limit();
@@ -477,9 +477,8 @@ void Set_Order_Limit(int callFrom)
           }
       }
     }
-  }
+//   }
 
-  //if(CurrentLevelBuy != Last_CurrentLevelBuy || Last_Buy_Vol != currentBuyVolume)
   if(CurrentLevelBuy != Last_CurrentLevelBuy && BUY_TREND_OK)
   {
     {
