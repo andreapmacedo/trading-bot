@@ -37,12 +37,7 @@
     double SERVER_SYMBOL_LASTHIGH; //Máximo dos preços negociados do dia (ok) 
     double SERVER_SYMBOL_LASTLOW; //Mínimo dos preços negociados do dia (ok) 
     int SERVER_SYMBOL_SPREAD; // Valor do spread em pontos
-
-
-
 //double SERVER_
-
-
 
 //https://www.mql5.com/pt/docs/constants/environment_state/marketinfoconstants
 
