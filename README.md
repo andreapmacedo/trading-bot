@@ -1,0 +1,1 @@
+O projeto teve como objetivo a construção de um bot para automatizar operações na bolsa brasileira B3,  utilizando a linquagem mql5(c) na plataforma Meta Trader 5. Atualmente, o sistema é capaz de ter autonomia absoluta sobre todas as tarefas, realizar operação em alta frequência e conta com um robusto mecanismo de proteção além da disponibilização de logs. 
